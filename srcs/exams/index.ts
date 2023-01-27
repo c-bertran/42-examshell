@@ -98,4 +98,8 @@ export default class {
 				.catch(() => res());
 		});
 	}
+
+	info(): void {
+		console.log('plip');
+	}
 }

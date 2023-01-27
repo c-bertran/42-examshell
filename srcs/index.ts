@@ -4,6 +4,7 @@ import { createInterface } from 'readline';
 import prompts from 'prompts';
 import type { Interface } from 'readline';
 
+import commands from 'commands/index';
 import exams, { examList } from 'exams/index';
 import i18n, { lang, langList } from 'langs/index';
 import checklib from 'modules/checklib';
@@ -145,9 +146,12 @@ class main {
 		})
 			.on('line', async (line: string) => {
 				this.prompt?.pause();
-
-				console.log('line ==>', line);
-
+				commands(
+					line,
+					this.options.lang,
+					this.examInstance as exams,
+					this.clockInstance as clock
+				);
 				this.prompt?.resume();
 				this.prompt?.prompt();
 			})

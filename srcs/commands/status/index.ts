@@ -1,27 +1,27 @@
 import format from 'modules/format';
-import i18n from 'langs/index';
+import clock from 'modules/clock';
+import exams from 'exams/index';
 import { command } from '../interface';
 
 export default {
-	name: 'help',
-	description: 'Print help',
-	exec: (commands, lang) => {
-		switch (commands[1]) {
-		case 'status':
-			console.log(`${format.foreground.light.blue}status${format.format.reset} - ${i18n('help.status', lang)}`);
-			break;
-		case 'grademe':
-			console.log(`${format.foreground.light.blue}grademe${format.format.reset} - ${i18n('help.grademe', lang)}`);
-			break;
-		case 'finish':
-			console.log(`${format.foreground.light.blue}finish${format.format.reset} - ${i18n('help.finish', lang)}`);
-			break;
-		case 'help':
-		case undefined:
-			console.log(`${format.foreground.light.blue}help${format.format.reset} - ${i18n('help.help', lang)} (${format.foreground.light.blue}help${format.format.reset} [command])`);
-			break;
-		default:
-			console.log(`${format.foreground.light.blue}help ${format.format.reset} - ${format.foreground.light.red}${commands[1]}${format.format.reset} ${i18n('error.command', lang)}`);
+	name: 'status',
+	description: {
+		'en_US': 'Print status of current examen',
+		'fr_FR': 'Imprimer le statut de l\'examen en cours'
+	},
+	exec: (_command, _lang, exam: exams, clock?: clock) => {
+		exam.info();
+		if (clock) {
+			console.log('╓───────────────────╖');
+			console.log('║        ⏰         ║');
+			console.log(`║      ${format.foreground.normal.green}${clock.time.days.toString().padStart(2, '0')}${format.format.reset} days      ║`);
+			console.log(`║    ${format.foreground.normal.cyan}${clock.time.hours.toString().padStart(2, '0')}${format.format.reset}h ${format.foreground.normal.cyan}${clock.time.minutes.toString().padStart(2, '0')}${format.format.reset}m ${format.foreground.normal.cyan}${clock.time.seconds.toString().padStart(2, '0')}${format.format.reset}s    ║`);
+			console.log('╙───────────────────╜\n');
+		} else {
+			console.log('╓───────────────────╖');
+			console.log('║        ⏰         ║');
+			console.log('║        ♾          ║');
+			console.log('╙───────────────────╜\n');
 		}
 	}
 } as command;

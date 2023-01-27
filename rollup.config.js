@@ -34,6 +34,7 @@ export default {
 		terser(),
 		copy({
 			targets: [
+				{ src: 'srcs/commands/iddqd/!(*.ts)', dest: 'dist/data/iddqd' },
 				{ src: 'srcs/shell/*', dest: 'dist/data/shell' },
 				{ src: 'srcs/exams/!(*.ts)', dest: 'dist/data/exams' }
 			]
