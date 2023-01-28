@@ -2,6 +2,7 @@ import { lang } from 'langs/index';
 
 interface exercice {
 	id: string;
+	dir?: string;
 	name: Record<lang, string>,
 	exponent: number;
 	trace: boolean;
