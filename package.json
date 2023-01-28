@@ -2,12 +2,20 @@
   "name": "examshell",
   "private": "true",
   "version": "0.3.0",
-  "author": "cbertran",
-  "description": "Examshell",
+	"license": "GPL-3.0",
+  "author": "Clément Bertrand (https://github.com/c-bertran)",
+  "description": "Examshell will allow you to practice to be perfectly ready for the exams",
   "repository": {
     "type": "git",
     "url": "https://github.com/c-bertran/examshell.git"
   },
+	"keywords": [
+    "examshell",
+    "42",
+    "examen",
+    "exam",
+		"42exam"
+  ],
   "bin": "dist/index.cjs.js",
   "scripts": {
     "start": "node dist/index.cjs.js",
