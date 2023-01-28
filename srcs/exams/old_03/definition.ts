@@ -2,6 +2,7 @@ import { examDefinition } from '../interface';
 
 export default {
 	id: 'old_exam_03',
+	dirName: 'old_03',
 	name: {
 		'en_US': 'Old exam 03',
 		'fr_FR': 'Ancien examen 03'

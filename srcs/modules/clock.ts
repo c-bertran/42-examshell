@@ -89,6 +89,14 @@ export default class extends EventEmitter {
 		this.emit('stop');
 	}
 
+	isFinish(): boolean {
+		return (this.time.days === 0
+			&& this.time.hours === 0
+			&& this.time.minutes === 0
+			&& this.time.seconds === 0
+		);
+	}
+
 	clock(): string {
 		const __n = (n: number): string => (n < 9)
 			? `0${n}`

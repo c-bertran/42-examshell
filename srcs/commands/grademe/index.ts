@@ -1,3 +1,4 @@
+import exams from 'exams/index';
 import { command } from '../interface';
 
 export default {
@@ -6,7 +7,11 @@ export default {
 		'en_US': 'Grade current exercice',
 		'fr_FR': 'Noter l\'exercice en cours'
 	},
-	exec: (command, lang) => {
-		console.log(command, lang);
+	exec: async (_command, _lang, exams: exams) => {
+		return new Promise((res) => {
+			exams.grade()
+				.then(() => res())
+				.catch(() => res());
+		});
 	}
 } as command;

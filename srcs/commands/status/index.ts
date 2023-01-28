@@ -9,7 +9,7 @@ export default {
 		'en_US': 'Print status of current examen',
 		'fr_FR': 'Imprimer le statut de l\'examen en cours'
 	},
-	exec: (_command, _lang, exam: exams, clock?: clock) => {
+	exec: async (_command, _lang, exam: exams, clock?: clock) => {
 		exam.info();
 		if (clock) {
 			console.log('╓───────────────────╖');

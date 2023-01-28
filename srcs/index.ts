@@ -94,7 +94,7 @@ class main {
 						this.options.doom = true;
 					for (const exam of examList) {
 						if (exam.id === answer.exam) {
-							this.examInstance = new exams(answer.exam, this.options.lang);
+							this.examInstance = new exams(answer.exam, this.options);
 							this.clockInstance = new clock(exam.time);
 							this.examInstance.init();
 							break;
@@ -117,11 +117,19 @@ class main {
 			.then(() => {
 				console.log(`\n${format.foreground.light.blue}${i18n('info.dir', this.options.lang)} '${format.foreground.normal.green}${this.examInstance?.git.main}${format.format.reset}'`);
 				console.log(`${format.foreground.light.blue}${i18n('info.git', this.options.lang)}${format.format.reset}\n`);
+				this.examInstance?.nextExercice();
 			})
 			.catch((e) => {
 				console.error(e);
 				exit(127);
 			});
+	}
+
+	async manageClock() {
+		this.clockInstance?.start();
+		this.clockInstance?.on('stop', () => {
+			console.log('clock finish');
+		});
 	}
 
 	startPrompt(): void {
@@ -146,7 +154,7 @@ class main {
 		})
 			.on('line', async (line: string) => {
 				this.prompt?.pause();
-				commands(
+				await commands(
 					line,
 					this.options.lang,
 					this.examInstance as exams,
@@ -176,6 +184,7 @@ class main {
 		await instance.setLang();
 		await instance.setOptionsAndExam();
 		await instance.startExamen();
+		instance.manageClock();
 		instance.startPrompt();
 	} catch {
 		exit(127);

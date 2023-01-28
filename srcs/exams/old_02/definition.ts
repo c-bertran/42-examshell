@@ -2,6 +2,7 @@ import { examDefinition } from '../interface';
 
 export default {
 	id: 'old_exam_02',
+	dirName: 'old_02',
 	name: {
 		'en_US': 'Old exam 02',
 		'fr_FR': 'Ancien examen 02'
@@ -17,7 +18,7 @@ export default {
 					'fr_FR': 'union'
 				},
 				exponent: 2,
-				trace: false,
+				trace: true,
 				allowed_functions: ['write'],
 				moulinette: true,
 				leaks: true,

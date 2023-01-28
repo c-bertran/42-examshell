@@ -97,7 +97,7 @@ export default async (line: string, lang: lang, exams: exams, clock: clock): Pro
 	instance.fuzzySearch(commands[0]);
 	const command = instance.getCommand(commands[0]);
 	if (command)
-		command.exec(commands, lang, exams, clock);
+		await command.exec(commands, lang, exams, clock);
 	else {
 		const print = [];
 		for (const key in instance.commands) {

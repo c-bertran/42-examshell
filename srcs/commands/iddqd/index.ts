@@ -104,7 +104,7 @@ export default {
 		'en_US': 'A wonderful easter egg',
 		'fr_FR': 'Un superbe easter egg'
 	},
-	exec: () => {
+	exec: async () => {
 		if (!childServe)
 			childServe = new iddqd();
 		childServe.print();

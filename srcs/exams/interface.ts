@@ -5,7 +5,8 @@ interface exercice {
 	name: Record<lang, string>,
 	exponent: number;
 	trace: boolean;
-	allowed_functions: string[];
+	allowed_functions?: string[];
+	forbidden_keywords?: string[];
 	moulinette: boolean | [ boolean, boolean ];
 	leaks: boolean;
 	copy?: {
@@ -17,6 +18,7 @@ interface exercice {
 export interface examDefinition {
 	hide?: boolean,
 	id: string;
+	dirName: string;
 	name: Record<lang, string>;
 	goal: number;
 	time: string;
