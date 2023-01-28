@@ -10,6 +10,7 @@ import iddqd from './iddqd';
 import status from './status';
 
 import { command } from './interface';
+import { stdout } from 'process';
 
 
 interface fuzzy {
@@ -95,6 +96,11 @@ export default async (line: string, lang: lang, exams: exams, clock: clock): Pro
 	if (!commands.length)
 		return;
 	instance.fuzzySearch(commands[0]);
+	if (!exams.options.infinite && clock.isFinish() && commands[0] === 'grademe') {
+		stdout.clearLine(0);
+		stdout.write(`${format.format.reset}${i18n('outOfTime', lang)}\n`);
+		return;
+	}
 	const command = instance.getCommand(commands[0]);
 	if (command)
 		await command.exec(commands, lang, exams, clock);

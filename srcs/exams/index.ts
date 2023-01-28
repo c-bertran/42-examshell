@@ -24,7 +24,7 @@ export const examList = [
 
 export default class {
 	private randId: () => string;
-	private options: { infinite: boolean; doom: boolean; lang: lang };
+	public options: { infinite: boolean; doom: boolean; lang: lang };
 	private timer: {
 		interval: undefined | NodeJS.Timer;
 		retry: number;

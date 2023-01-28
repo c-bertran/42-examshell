@@ -125,13 +125,6 @@ class main {
 			});
 	}
 
-	async manageClock() {
-		this.clockInstance?.start();
-		this.clockInstance?.on('stop', () => {
-			console.log('clock finish');
-		});
-	}
-
 	startPrompt(): void {
 		const stopPrompt = () => {
 			stdout.write('\n');
@@ -184,7 +177,7 @@ class main {
 		await instance.setLang();
 		await instance.setOptionsAndExam();
 		await instance.startExamen();
-		instance.manageClock();
+		instance.clockInstance?.start();
 		instance.startPrompt();
 	} catch {
 		exit(127);

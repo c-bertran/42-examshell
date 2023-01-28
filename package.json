@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/c-bertran/examshell.git"
   },
-  "bin": "dist/index.js",
+  "bin": "dist/index.cjs.js",
   "scripts": {
     "start": "node dist/index.cjs.js",
     "build": "rollup --bundleConfigAsCjs --config rollup.config.js",
@@ -20,8 +20,7 @@
   "pkg": {
     "assets": [
       "package.json",
-      "exam/**/*",
-      "srcs/**/*"
+      "dist/**/*"
     ],
     "targets": [
       "latest-macos-x64",
@@ -43,6 +42,7 @@
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
     "eslint": "^8.32.0",
+    "pkg": "^5.8.0",
     "rollup": "^3.10.1",
     "rollup-plugin-copy": "^3.4.0",
     "typescript": "^4.9.4"
