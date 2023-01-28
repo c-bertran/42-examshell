@@ -13,13 +13,18 @@ import format from 'modules/format';
 import copyDirSync from 'modules/fsCopyDir';
 import spinner from 'modules/spinner';
 import i18n, { lang } from 'langs/index';
+import { examDefinition } from './interface';
+
 import oldTwo from './old_02/definition';
 import oldThree from './old_03/definition';
-import { examDefinition } from './interface';
+import Four from './04/definition';
+import Five from './05/definition';
 
 export const examList = [
 	oldTwo,
-	oldThree
+	oldThree,
+	Four,
+	Five
 ] as examDefinition[];
 
 export default class {
