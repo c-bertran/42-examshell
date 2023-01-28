@@ -108,7 +108,6 @@ export default async (line: string, lang: lang, exams: exams, clock: clock): Pro
 		const print = [];
 		for (const key in instance.commands) {
 			if (!instance.commands[key].hide && instance.fuzzyCommands[key].ratio >= 0.4) {
-				console.log('hello');
 				print.push({
 					command: instance.commands[key].name,
 					description: instance.commands[key].description[lang]

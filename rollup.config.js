@@ -7,6 +7,7 @@ import copy from 'rollup-plugin-copy';
 import { version } from './package.json';
 
 export default {
+	external: ['child_process', 'crypto', 'events', 'fs', 'fs/promises', 'http', 'https', 'os', 'path', 'process', 'readline', 'util'],
 	input: 'srcs/index.ts',
 	watch: {
 		clearScreen: false,

@@ -1,5 +1,4 @@
 import exams from '@/exams';
-import { rm } from 'fs/promises';
 import { exit } from 'process';
 import { command } from '../interface';
 
@@ -10,7 +9,7 @@ export default {
 		'fr_FR': 'Termine l\'examen et quitte le programme'
 	},
 	exec: async (_command, _lang, exam: exams) => {
-		await rm(exam.git.temp, { recursive: true, force: true });
+		await exam.stop();
 		exit(0);
 	}
 } as command;

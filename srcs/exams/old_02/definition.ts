@@ -18,7 +18,7 @@ export default {
 					'fr_FR': 'union'
 				},
 				exponent: 2,
-				trace: true,
+				trace: false,
 				allowed_functions: ['write'],
 				moulinette: true,
 				leaks: true,

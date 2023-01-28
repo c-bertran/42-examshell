@@ -1,7 +1,7 @@
 import { exec } from 'child_process';
 import { randomBytes } from 'crypto';
-import { copyFileSync, mkdirSync, readdirSync, rmSync } from 'fs';
-import { copyFile, rm,  mkdir as mkdirPromise, readFile } from 'fs/promises';
+import { copyFileSync, mkdirSync, readdirSync, readFileSync, rmSync } from 'fs';
+import { copyFile, rm,  mkdir as mkdirPromise } from 'fs/promises';
 import { glob } from 'glob';
 import { homedir, tmpdir } from 'os';
 import { basename, resolve } from 'path';
@@ -169,11 +169,12 @@ export default class {
 				selectExercice.id
 			),
 			subject: resolve(this.git.subject, selectExercice.id),
-			correction: resolve(this.git.temp, this.randId())
+			correction: resolve(this.git.temp, this.generateId)
 		};
 		
 		return new Promise((res, rej) => {
 			try {
+				rmSync(this.exam.path.correction, { recursive: true, force: true });
 				mkdirSync(this.exam.path.subject);
 				mkdirSync(this.exam.path.correction);
 				copyFile(
@@ -209,132 +210,125 @@ export default class {
 	}
 
 	grade(): Promise<void> {
-		return new Promise((res, rej) => {
+		return new Promise((res) => {
 			if (this.exam.goal.current >= this.exam.goal.max)
-				return;
+				return res();
 			if (this.timer.retry > 0) {
 				console.log(`${format.foreground.light.red}${i18n('grademe.time', this.options.lang)} ${format.foreground.light.blue}${this.convertTime(this.timer.retry)} ${format.format.reset}`);
-				return;
+				return res();
 			}
 
 			const spin = new spinner();
 			spin.start(i18n('grademe.correction', this.options.lang) as string, 'bar');
+
 			try {
 				rmSync(this.exam.path.correction, { recursive: true, force: true });
 				mkdirSync(this.exam.path.correction);
 			} catch (e) {
-				rej(e);
+				this.failed(spin, e).then(() => res()).catch(() => res());
 			}
 
 			exec(`git clone ${this.git.render}`, {
 				cwd: this.exam.path.correction,
 				shell: '/bin/bash',
 				windowsHide: true
-			}, async (err, stdout, stderr) => {
+			}, (err, _stdout, stderr) => {
 				if (err || (stderr.length && /warning: You appear to have cloned an empty repository/gm.test(stderr))) {
-					await this.failed(spin, (stderr.length)
+					this.failed(spin, (stderr.length)
 						? stderr
-						: `errno: ${err?.code}`, true);
-					rej();
+						: `errno: ${err?.code}`, true).then(() => res()).catch(() => res());
 				} else {
-					this.testExercice(spin)
-						.then(() => res())
-						.catch(() => rej());
+					this.testExercice()
+						.then(() => {
+							this.success(spin)
+								.then(() => res())
+								.catch(() => res());
+						})
+						.catch((e: { data: any, force?: boolean }) => {
+							this.failed(spin, e.data, e.force)
+								.then(() => res())
+								.catch(() => res());
+						});
 				}
 			});
 		});
 	}
 
-	private async testExercice(spin: spinner): Promise<void> {
-		const exercice = examList[this.exam.id].exercices[this.exam.currentStep][this.exam.exerciceSelected];
-		try {
-			await copyFile(resolve(__dirname, 'data', 'shell', 'leaks.bash'), resolve(this.exam.path.correction, 'leaks.bash'));
-			await copyFile(resolve(__dirname, 'data', 'shell', 'make.bash'), resolve(this.exam.path.correction, 'make.bash'));
-			if (exercice.copy?.check) {
-				for (const el of exercice.copy.check) {
-					glob.sync(resolve(this.exam.path.exercice, el)).forEach((file) => {
-						copyFileSync(file, resolve(this.exam.path.correction, basename(file)));
-					});
+	private async testExercice(): Promise<void> {
+		return new Promise((res: () => void, rej: (e: { data: any, force?: boolean }) => void) => {
+			const exercice = examList[this.exam.id].exercices[this.exam.currentStep][this.exam.exerciceSelected];
+			try {
+				copyFileSync(resolve(__dirname, 'data', 'shell', 'leaks.bash'), resolve(this.exam.path.correction, 'leaks.bash'));
+				copyFileSync(resolve(this.exam.path.exercice, 'make.bash'), resolve(this.exam.path.correction, 'make.bash'));
+				if (exercice.copy?.check) {
+					for (const el of exercice.copy.check) {
+						glob.sync(resolve(this.exam.path.exercice, el)).forEach((file) => {
+							copyDirSync(file, resolve(this.exam.path.correction, basename(file)));
+						});
+					}
 				}
+			} catch (e: any) {
+				rej({ data: e });
 			}
-		} catch (e: any) {
-			throw new Error(e);
-		}
 
-		return new Promise((res, rej) => {
 			exec(`bash make.bash ${(i18n('git.render', this.options.lang))}`, {
 				cwd: this.exam.path.correction,
 				shell: '/bin/bash',
 				windowsHide: true,
-			}, (err, stdout, stderr) => {
+			}, (err, _stdout, stderr) => {
 				if (err || stderr.length) {
 					if (err && err.code === 100)
-						this.failed(spin, err);
+						rej({ data: err });
 					else {
-						this.failed(spin, (stderr.length)
+						rej({ data: (stderr.length)
 							? stderr
-							: `errno: ${err?.code}`, true);
+							: `errno: ${err?.code}`, force: true });
 					}
-					return rej();
+				} else {
+					const diff = readFileSync(resolve(this.exam.path.correction, '__diff'), { encoding: 'utf-8' });
+					if (diff.length > 0)
+						return rej({ data: diff });
+					if (exercice.moulinette || Array.isArray(exercice.moulinette)) {
+						const elements = {
+							functs: (Object.prototype.hasOwnProperty.call(exercice, 'allowed_functions'))
+								? exercice.allowed_functions
+								: [],
+							keys: (Object.prototype.hasOwnProperty.call(exercice, 'forbidden_keywords'))
+								? exercice.forbidden_keywords
+								: [],
+						};
+						const check = new checker(
+							resolve(this.exam.path.correction, i18n('git.render', this.options.lang) as string, exercice.id),
+							exercice.moulinette,
+							elements.functs,
+							elements.keys
+						);
+						const errors = check.check();
+						if (errors.length)
+							return rej({ data: JSON.stringify(errors, null, 2) });
+					}
+					if (exercice.leaks) {
+						const ret = {
+							leaks: [] as any[],
+							fds: [] as any[],
+						};
+						const dirList = readdirSync(this.exam.path.correction, { encoding: 'utf-8', withFileTypes: false });
+						dirList.forEach((file) => {
+							if (/^valgrind_\d+.log/.test(file)) {
+								const leaks = new valgrind(resolve(this.exam.path.correction, file));
+								if (leaks.isLeaks())
+									ret.leaks.push(leaks.leaks);
+								if (leaks.isOpenFds())
+									ret.fds.push(leaks.fds);
+							}
+						});
+						if (ret.leaks.length > 0)
+							return rej({ data: JSON.stringify(ret.leaks, null, 2) });
+						if (ret.fds.length > 0)
+							return rej({ data: JSON.stringify(ret.fds, null, 2) });
+					}
+					res();
 				}
-				readFile(resolve(this.exam.path.correction, '__diff'), { encoding: 'utf-8' })
-					.then((diff) => {
-						if (diff.length > 0) {
-							this.failed(spin, diff);
-							return rej();
-						}
-						if (exercice.moulinette || Array.isArray(exercice.moulinette)) {
-							const elements = {
-								functs: (Object.prototype.hasOwnProperty.call(exercice, 'allowed_functions'))
-									? exercice.allowed_functions
-									: [],
-								keys: (Object.prototype.hasOwnProperty.call(exercice, 'forbidden_keywords'))
-									? exercice.forbidden_keywords
-									: [],
-							};
-							const check = new checker(
-								resolve(this.exam.path.correction, i18n('git.render', this.options.lang) as string, exercice.id),
-								exercice.moulinette,
-								elements.functs,
-								elements.keys
-							);
-							const errors = check.check();
-							if (errors.length) {
-								this.failed(spin, JSON.stringify(errors));
-								return rej();
-							}
-						}
-						if (exercice.leaks) {
-							const ret = {
-								leaks: [] as any[],
-								fds: [] as any[],
-							};
-							const dirList = readdirSync(this.exam.path.correction, { encoding: 'utf-8', withFileTypes: false });
-							dirList.forEach((file) => {
-								if (/^valgrind_\d+.log/.test(file)) {
-									const leaks = new valgrind(resolve(this.exam.path.correction, file));
-									if (leaks.isLeaks())
-										ret.leaks.push(leaks.leaks);
-									if (leaks.isOpenFds())
-										ret.fds.push(leaks.fds);
-								}
-							});
-							if (ret.leaks.length > 0) {
-								this.failed(spin, JSON.stringify(ret.leaks, null, 2));
-								return rej();
-							}
-							if (ret.fds.length > 0) {
-								this.failed(spin, JSON.stringify(ret.fds, null, 2));
-								return rej();
-							}
-						}
-						this.success(spin);
-						res();
-					})
-					.catch((e) => {
-						this.failed(spin, e);
-						rej();
-					});
 			});
 		});
 	}
@@ -376,14 +370,14 @@ export default class {
 	private async success(spin: spinner): Promise<void> {
 		spin.stop();
 		stdout.clearLine(0);
-		++this.exam.id;
+		++this.exam.currentStep;
 		this.exam.goal.current += this.exam.goal.add;
 		console.log(`${format.foreground.light.green}>>> ${(i18n('grademe.success', this.options.lang) as string).toUpperCase()} <<<${format.format.reset}`);
 		if (this.exam.goal.current >= this.exam.goal.max) {
 			this.exam.goal.current = this.exam.goal.max;
 			console.log(`${format.foreground.light.blue}${i18n('grademe.finish', this.options.lang) as string}${format.format.reset}`);
 		} else
-			this.start();
+			await this.nextExercice();
 		return;
 	}
 }
