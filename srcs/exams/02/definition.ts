@@ -629,6 +629,120 @@ export default {
 					check: ['main.c']
 				}
 			}
+		],
+		[
+			{
+				id: 'flood_fill',
+				dir: 'part_3',
+				name: {
+					'en_US': 'flood_fill',
+					'fr_FR': 'flood_fill'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['flood_fill.c', 'main.c']
+				}
+			},
+			{
+				id: 'fprime',
+				dir: 'part_3',
+				name: {
+					'en_US': 'fprime',
+					'fr_FR': 'fprime'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['printf', 'atoi'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'ft_itoa',
+				dir: 'part_3',
+				name: {
+					'en_US': 'ft_itoa',
+					'fr_FR': 'ft_itoa'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['malloc'],
+				copy: {
+					check: ['ft_itoa.c', 'main.c']
+				}
+			},
+			{
+				id: 'ft_split',
+				dir: 'part_3',
+				name: {
+					'en_US': 'ft_split',
+					'fr_FR': 'ft_split'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['malloc'],
+				copy: {
+					check: ['ft_split.c', 'main.c']
+				}
+			},
+			{
+				id: 'rev_wstr',
+				dir: 'part_3',
+				name: {
+					'en_US': 'rev_wstr',
+					'fr_FR': 'rev_wstr'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write', 'malloc', 'free'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'rostring',
+				dir: 'part_3',
+				name: {
+					'en_US': 'rostring',
+					'fr_FR': 'rostring'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write', 'malloc', 'free'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'sort_list',
+				dir: 'part_3',
+				name: {
+					'en_US': 'sort_list',
+					'fr_FR': 'sort_list'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				copy: {
+					user: ['list.h'],
+					check: ['list.h', 'sort_list.c', 'main.c']
+				}
+			}
 		]
 	]
 } as examDefinition;
