@@ -406,6 +406,229 @@ export default {
 					check: ['union.c']
 				}
 			}
+		],
+		[
+			{
+				id: 'add_prime_sum',
+				dir: 'part_2',
+				name: {
+					'en_US': 'add_prime_sum',
+					'fr_FR': 'add_prime_sum'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write', 'exit'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'epur_str',
+				dir: 'part_2',
+				name: {
+					'en_US': 'epur_str',
+					'fr_FR': 'epur_str'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'expand_str',
+				dir: 'part_2',
+				name: {
+					'en_US': 'expand_str',
+					'fr_FR': 'expand_str'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'ft_atoi_base',
+				dir: 'part_2',
+				name: {
+					'en_US': 'ft_atoi_base',
+					'fr_FR': 'ft_atoi_base'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				copy: {
+					check: ['ft_atoi_base.c', 'main.c']
+				}
+			},
+			{
+				id: 'ft_list_size',
+				dir: 'part_2',
+				name: {
+					'en_US': 'ft_list_size',
+					'fr_FR': 'ft_list_size'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				copy: {
+					check: ['ft_list_size.c', 'main.c']
+				}
+			},
+			{
+				id: 'ft_range',
+				dir: 'part_2',
+				name: {
+					'en_US': 'ft_range',
+					'fr_FR': 'ft_range'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['malloc'],
+				copy: {
+					check: ['ft_range.c', 'main.c']
+				}
+			},
+			{
+				id: 'hidenp',
+				dir: 'part_2',
+				name: {
+					'en_US': 'hidenp',
+					'fr_FR': 'hidenp'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'lcm',
+				dir: 'part_2',
+				name: {
+					'en_US': 'lcm',
+					'fr_FR': 'lcm'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				copy: {
+					check: ['lcm.c', 'main.c']
+				}
+			},
+			{
+				id: 'paramsum',
+				dir: 'part_2',
+				name: {
+					'en_US': 'paramsum',
+					'fr_FR': 'paramsum'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'pgcd',
+				dir: 'part_2',
+				name: {
+					'en_US': 'pgcd',
+					'fr_FR': 'pgcd'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['printf', 'atoi', 'malloc', 'free'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'print_hex',
+				dir: 'part_2',
+				name: {
+					'en_US': 'print_hex',
+					'fr_FR': 'print_hex'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'rstr_capitalizer',
+				dir: 'part_2',
+				name: {
+					'en_US': 'rstr_capitalizer',
+					'fr_FR': 'rstr_capitalizer'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'str_capitalizer',
+				dir: 'part_2',
+				name: {
+					'en_US': 'str_capitalizer',
+					'fr_FR': 'str_capitalizer'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'tab_mult',
+				dir: 'part_2',
+				name: {
+					'en_US': 'tab_mult',
+					'fr_FR': 'tab_mult'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['main.c']
+				}
+			}
 		]
 	]
 } as examDefinition;
