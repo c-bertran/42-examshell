@@ -171,6 +171,7 @@ export default class {
 			exercice: resolve(
 				__dirname, 'data', 'exams',
 				examList[this.exam.id].dirName,
+				selectExercice.dir ?? '',
 				selectExercice.id
 			),
 			subject: resolve(this.git.subject, selectExercice.id),

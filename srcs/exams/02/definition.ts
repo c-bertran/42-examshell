@@ -22,6 +22,7 @@ export default {
 				trace: false,
 				moulinette: true,
 				leaks: true,
+				allowed_functions: ['write'],
 				copy: {
 					check: ['first_word.c']
 				}
@@ -37,6 +38,7 @@ export default {
 				trace: false,
 				moulinette: true,
 				leaks: true,
+				allowed_functions: ['write'],
 				copy: {
 					check: ['fizzbuzz.c']
 				}
@@ -52,21 +54,7 @@ export default {
 				trace: false,
 				moulinette: true,
 				leaks: true,
-				copy: {
-					check: ['ft_putstr.c', 'main.c']
-				}
-			},
-			{
-				id: 'ft_putstr',
-				dir: 'part_0',
-				name: {
-					'en_US': 'ft_putstr',
-					'fr_FR': 'ft_putstr'
-				},
-				exponent: 4,
-				trace: false,
-				moulinette: true,
-				leaks: true,
+				allowed_functions: ['write'],
 				copy: {
 					check: ['ft_putstr.c', 'main.c']
 				}
@@ -127,6 +115,7 @@ export default {
 				trace: false,
 				moulinette: true,
 				leaks: true,
+				allowed_functions: ['write'],
 				copy: {
 					check: ['main.c']
 				}
@@ -142,6 +131,7 @@ export default {
 				trace: false,
 				moulinette: true,
 				leaks: true,
+				allowed_functions: ['write'],
 				copy: {
 					check: ['main.c']
 				}
@@ -157,6 +147,7 @@ export default {
 				trace: false,
 				moulinette: true,
 				leaks: true,
+				allowed_functions: ['write'],
 				copy: {
 					check: ['main.c']
 				}
@@ -172,6 +163,23 @@ export default {
 				trace: false,
 				moulinette: true,
 				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'search_and_replace',
+				dir: 'part_0',
+				name: {
+					'en_US': 'search_and_replace',
+					'fr_FR': 'search_and_replace'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write', 'exit'],
 				copy: {
 					check: ['main.c']
 				}
@@ -187,10 +195,43 @@ export default {
 				trace: false,
 				moulinette: true,
 				leaks: true,
+				allowed_functions: ['write'],
 				copy: {
 					check: ['main.c']
 				}
 			}
+		],
+		[
+			{
+				id: 'alpha_mirror',
+				dir: 'part_1',
+				name: {
+					'en_US': 'alpha_mirror',
+					'fr_FR': 'alpha_mirror'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'camel_to_snake',
+				dir: 'part_1',
+				name: {
+					'en_US': 'camel_to_snake',
+					'fr_FR': 'camel_to_snake'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				copy: {
+					check: ['main.c']
+				}
+			},
 		]
 	]
 } as examDefinition;
