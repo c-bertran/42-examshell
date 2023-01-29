@@ -213,6 +213,7 @@ export default {
 				trace: false,
 				moulinette: true,
 				leaks: true,
+				allowed_functions: ['write'],
 				copy: {
 					check: ['main.c']
 				}
@@ -228,10 +229,183 @@ export default {
 				trace: false,
 				moulinette: true,
 				leaks: true,
+				allowed_functions: ['malloc', 'free', 'realloc', 'write'],
 				copy: {
 					check: ['main.c']
 				}
 			},
+			{
+				id: 'do_op',
+				dir: 'part_1',
+				name: {
+					'en_US': 'do_op',
+					'fr_FR': 'do_op'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['atoi', 'printf', 'write'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'ft_atoi',
+				dir: 'part_1',
+				name: {
+					'en_US': 'ft_atoi',
+					'fr_FR': 'ft_atoi'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				copy: {
+					check: ['ft_atoi.c', 'main.c']
+				}
+			},
+			{
+				id: 'ft_strcmp',
+				dir: 'part_1',
+				name: {
+					'en_US': 'ft_strcmp',
+					'fr_FR': 'ft_strcmp'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				copy: {
+					check: ['ft_strcmp.c', 'main.c']
+				}
+			},
+			{
+				id: 'ft_strdup',
+				dir: 'part_1',
+				name: {
+					'en_US': 'ft_strdup',
+					'fr_FR': 'ft_strdup'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['malloc'],
+				copy: {
+					check: ['ft_strdup.c', 'main.c']
+				}
+			},
+			{
+				id: 'inter',
+				dir: 'part_1',
+				name: {
+					'en_US': 'inter',
+					'fr_FR': 'inter'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'is_power_of_2',
+				dir: 'part_1',
+				name: {
+					'en_US': 'is_power_of_2',
+					'fr_FR': 'is_power_of_2'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['is_power_of_2.c', 'main.c']
+				}
+			},
+			{
+				id: 'last_word',
+				dir: 'part_1',
+				name: {
+					'en_US': 'last_word',
+					'fr_FR': 'last_word'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'max',
+				dir: 'part_1',
+				name: {
+					'en_US': 'max',
+					'fr_FR': 'max'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'snake_to_camel',
+				dir: 'part_1',
+				name: {
+					'en_US': 'snake_to_camel',
+					'fr_FR': 'snake_to_camel'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['malloc', 'free', 'realloc', 'write'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'swap_bits',
+				dir: 'part_1',
+				name: {
+					'en_US': 'swap_bits',
+					'fr_FR': 'swap_bits'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				copy: {
+					check: ['swap_bits.c', 'main.c']
+				}
+			},
+			{
+				id: 'union',
+				dir: 'part_1',
+				name: {
+					'en_US': 'union',
+					'fr_FR': 'union'
+				},
+				exponent: 2,
+				trace: false,
+				allowed_functions: ['write'],
+				moulinette: true,
+				leaks: true,
+				copy: {
+					check: ['union.c']
+				}
+			}
 		]
 	]
 } as examDefinition;

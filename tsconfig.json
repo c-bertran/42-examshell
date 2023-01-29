@@ -19,6 +19,7 @@
 
 		"paths": {
 			"@/*": ["srcs/*"],
+			"checker/*": ["srcs/checker/*"],
 			"commands/*": ["srcs/commands/*"],
 			"exams/*": ["srcs/exams/*"],
 			"langs/*": ["srcs/langs/*"],

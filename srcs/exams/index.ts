@@ -7,25 +7,13 @@ import { homedir, tmpdir } from 'os';
 import { basename, resolve } from 'path';
 import { stdout } from 'process';
 
-import checker from '@/checker';
-import valgrind from '@/checker/valgrind';
+import checker from 'checker/index';
+import valgrind from 'checker/valgrind';
 import format from 'modules/format';
 import copyDirSync from 'modules/fsCopyDir';
 import spinner from 'modules/spinner';
 import i18n, { lang } from 'langs/index';
-import { examDefinition } from './interface';
-
-import oldTwo from './old_02/definition';
-import oldThree from './old_03/definition';
-import Four from './04/definition';
-import Five from './05/definition';
-
-export const examList = [
-	oldTwo,
-	oldThree,
-	Four,
-	Five
-] as examDefinition[];
+import examList from './exams';
 
 export default class {
 	private randId: () => string;
@@ -121,6 +109,7 @@ export default class {
 				cwd: this.git.render,
 				shell: '/bin/bash',
 				windowsHide: true,
+				timeout: 15000
 			});
 			if (bash && bash.stderr) {
 				bash.stderr.on('data', () => {
@@ -237,7 +226,8 @@ export default class {
 			exec(`git clone ${this.git.render}`, {
 				cwd: this.exam.path.correction,
 				shell: '/bin/bash',
-				windowsHide: true
+				windowsHide: true,
+				timeout: 20000
 			}, (err, _stdout, stderr) => {
 				if (err || (stderr.length && /warning: You appear to have cloned an empty repository/gm.test(stderr))) {
 					this.failed(spin, (stderr.length)
@@ -281,6 +271,7 @@ export default class {
 				cwd: this.exam.path.correction,
 				shell: '/bin/bash',
 				windowsHide: true,
+				timeout: 120000 // 2min
 			}, (err, _stdout, stderr) => {
 				if (err || stderr.length) {
 					if (err && err.code === 100)
@@ -367,6 +358,7 @@ export default class {
 				cwd: this.git.render,
 				shell: '/bin/bash',
 				windowsHide: true,
+				timeout: 150000
 			}).on('exit', () => rmSync(resolve(this.git.render, 'init.bash'), { force: true }));
 		}
 		this.info();

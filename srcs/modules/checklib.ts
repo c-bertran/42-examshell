@@ -14,6 +14,7 @@ const child = (command: string, ispipe = false): Promise<unknown> => {
 			cwd: tmpdir(),
 			shell: '/bin/bash',
 			windowsHide: true,
+			timeout: 15000
 		}, (err) => {
 			if (err)
 				reject(Number(127));
