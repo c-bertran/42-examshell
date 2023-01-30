@@ -18,6 +18,6 @@ clang -Wall -Werror -Wextra $1/ft_strcmp/ft_strcmp.c $1/ft_strcmp/main.c -o ftSt
 ./ftStrcmp2 "  wou    wah   wi" "  wou    wah  X wi" >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash ftStrcmp2
+bash leaks.bash ftStrcmp2 0 "wondertime" "wonderful" >/dev/null 2>&1
 
 rm -rf ftStrcmp ftStrcmp2 real fake

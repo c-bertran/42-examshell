@@ -16,6 +16,6 @@ clang -Wall -Werror -Wextra $1/inter/inter.c -o inter2
 ./inter2 one two three >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash inter2
+bash leaks.bash inter2 0 ddf6vewg64f gtwthgdwthdwfteewhrtag6h4ffdhsd >/dev/null 2>&1
 
 rm -rf inter inter2 real fake

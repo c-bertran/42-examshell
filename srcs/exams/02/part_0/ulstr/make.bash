@@ -18,6 +18,6 @@ clang -Wall -Werror -Wextra $1/ulstr/ulstr.c -o ulstr2;
 ./ulstr2 "pAQe fwTDJetyi   YTJN    eyTjOEyJne  jEYj" >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash ulstr2
+bash leaks.bash ulstr2 0 "pAQe fwTDJetyi   YTJN    eyTjOEyJne  jEYj" >/dev/null 2>&1
 
 rm -rf ulstr ulstr2 real fake

@@ -16,6 +16,6 @@ clang -Wall -Werror -Wextra $1/swap_bits/swap_bits.c $1/swap_bits/main.c -o swap
 ./swap_bits2 "[" >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash swap_bits2
+bash leaks.bash swap_bits2 0 f >/dev/null 2>&1
 
 rm -rf swap_bits swap_bits2 real fake

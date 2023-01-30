@@ -22,6 +22,6 @@ clang -Wall -Werror -Wextra $1/is_power_of_2/is_power_of_2.c $1/is_power_of_2/ma
 ./isPower2 -3 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash isPower2
+bash leaks.bash isPower2 0 2048 >/dev/null 2>&1
 
 rm -rf isPower isPower2 real fake

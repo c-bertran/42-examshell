@@ -14,6 +14,6 @@ clang -Wall -Werror -Wextra $1/ft_strcpy/ft_strcpy.c $1/ft_strcpy/main.c -o ft_s
 ./ft_strcpy2 "                       " >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash ft_strcpy2
+bash leaks.bash ft_strcpy2 0 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" >/dev/null 2>&1
 
 rm -rf ft_strcpy ft_strcpy2 real fake

@@ -26,6 +26,6 @@ clang -Wall -Werror -Wextra $1/do_op/do_op.c -o doOp2;
 ./doOp2 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash doOp2
+bash leaks.bash doOp2 0 -244572 + 715644 >/dev/null 2>&1
 
 rm -rf doOp doOp2 real fake

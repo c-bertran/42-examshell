@@ -18,6 +18,6 @@ clang -Wall -Werror -Wextra $1/last_word/last_word.c -o lastWord2;
 ./lastWord2 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash lastWord2
+bash leaks.bash lastWord2 0 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" >/dev/null 2>&1
 
 rm -rf lastWord lastWord2 real fake

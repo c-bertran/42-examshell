@@ -20,6 +20,6 @@ clang -Wall -Werror -Wextra $1/search_and_replace/search_and_replace.c -o search
 ./search_and_replace2 "paqe fwt48djetyi   ytjn    45     eyt2joeyjne  jeyj" " " "6" >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash search_and_replace2
+bash leaks.bash search_and_replace2 0 "paqe fwt48djetyi   ytjn    45     eyt2joeyjne  jeyj" " " "6" >/dev/null 2>&1
 
 rm -rf search_and_replace search_and_replace2 real fake

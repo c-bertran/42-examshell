@@ -14,6 +14,6 @@ clang -Wall -Werror -Wextra $1/ft_swap/ft_swap.c $1/ft_swap/main.c -o ft_swap2;
 ./ft_swap2 789 3471365 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash ft_swap2
+bash leaks.bash ft_swap2 0 5 10 >/dev/null 2>&1
 
 rm -rf ft_swap ft_swap2 real fake

@@ -18,6 +18,6 @@ clang -Wall -Werror -Wextra $1/ft_strdup/ft_strdup.c $1/ft_strdup/main.c -o ftSt
 ./ftStrdup2 "  wou    wah   wi" >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash ftStrdup2
+bash leaks.bash ftStrdup2 0 "wondertime" >/dev/null 2>&1
 
 rm -rf ftStrdup ftStrdup2 real fake

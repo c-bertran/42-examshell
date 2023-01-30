@@ -18,6 +18,6 @@ clang -Wall -Werror -Wextra $1/repeat_alpha/repeat_alpha.c -o repeat_alpha2;
 ./repeat_alpha2 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash repeat_alpha2
+bash leaks.bash repeat_alpha2 0 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" >/dev/null 2>&1
 
 rm -rf repeat_alpha repeat_alpha2 real fake

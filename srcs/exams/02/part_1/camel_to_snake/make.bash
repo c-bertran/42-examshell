@@ -18,6 +18,6 @@ clang -Wall -Werror -Wextra $1/camel_to_snake/camel_to_snake.c -o camelToSnake2;
 ./camelToSnake2 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash camelToSnake2
+bash leaks.bash camelToSnake2 0 "hello_world_and_coucou" >/dev/null 2>&1
 
 rm -rf camelToSnake camelToSnake2 real fake
