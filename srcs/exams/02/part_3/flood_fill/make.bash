@@ -16,6 +16,6 @@ clang -Wall -Werror -Wextra $1/flood_fill/flood_fill.c $1/flood_fill/main.c -o f
 ./floodFill2 42 54 98756 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash floodFill2
+bash leaks.bash floodFill2 0 8 8 6 >/dev/null 2>&1
 
 rm -rf floodFill floodFill2 real fake

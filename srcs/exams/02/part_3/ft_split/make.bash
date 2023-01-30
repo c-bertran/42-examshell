@@ -16,6 +16,6 @@ clang -Wall -Werror -Wextra $1/ft_split/ft_split.c $1/ft_split/main.c -o ftSplit
 ./ftSplit2 "cette phrase ne cache rien               " >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash ftSplit2
+bash leaks.bash ftSplit2 0 "cette phrase ne cache rien" >/dev/null 2>&1
 
 rm -rf ftSplit ftSplit2 real fake

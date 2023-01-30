@@ -18,6 +18,6 @@ clang -Wall -Werror -Wextra $1/paramsum/paramsum.c -o paramSum2;
 ./paramSum2 49 11 67 48 15 13 39 18 44 100 17 52 26 62 74 92 79 53 9 88 70 93 55 33 68 69 34 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash paramSum2
+bash leaks.bash paramSum2 0 90 48 28 22 73 42 83 >/dev/null 2>&1
 
 rm -rf paramSum paramSum2 real fake

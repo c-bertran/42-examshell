@@ -18,6 +18,6 @@ clang -Wall -Werror -Wextra $1/ft_split/rev_wstr.c -o revWstr2;
 ./revWstr2 one two >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash revWstr2
+bash leaks.bash revWstr2 0 "cette phrase! !ne! cac he rien" >/dev/null 2>&1
 
 rm -rf revWstr revWstr2 real fake

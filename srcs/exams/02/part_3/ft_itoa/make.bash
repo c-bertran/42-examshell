@@ -22,6 +22,6 @@ clang -Wall -Werror -Wextra $1/ft_itoa/ft_itoa.c $1/ft_itoa/main.c -o ftItoa2;
 ./ftItoa2 -71496154 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash ftItoa2
+bash leaks.bash ftItoa2 0 71496154 >/dev/null 2>&1
 
 rm -rf ftItoa ftItoa2 real fake

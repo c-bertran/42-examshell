@@ -24,6 +24,6 @@ clang -Wall -Werror -Wextra $1/ft_atoi_base/ft_atoi_base.c $1/ft_atoi_base/main.
 ./atoiBase2 "       paqe fwtdjetyi	ytjn 			ytjoeyjne 		 jeyj" 13 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash atoiBase2
+bash leaks.bash atoiBase2 0 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" 2 >/dev/null 2>&1
 
 rm -rf atoiBase atoiBase2 real fake

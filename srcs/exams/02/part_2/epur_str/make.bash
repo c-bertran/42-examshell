@@ -18,6 +18,6 @@ clang -Wall -Werror -Wextra $1/epur_str/epur_str.c -o epurStr2;
 ./epurStr2 "       paqe fwtdjetyi	ytjn 			ytjoeyjne 		 jeyj	  	 " >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash epurStr2
+bash leaks.bash epurStr2 0 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" >/dev/null 2>&1
 
 rm -rf epurStr epurStr2 real fake

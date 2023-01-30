@@ -14,6 +14,6 @@ clang -Wall -Werror -Wextra $1/pgcd/pgcd.c -o pgcd2;
 ./pgcd2 7517 54245 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash pgcd2
+bash leaks.bash pgcd2 0 5 12 >/dev/null 2>&1
 
 rm -rf pgcd pgcd2 real fake

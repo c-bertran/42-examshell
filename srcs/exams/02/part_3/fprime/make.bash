@@ -28,6 +28,6 @@ clang -Wall -Werror -Wextra $1/fprime/fprime.c -o fPrime2;
 ./fPrime2 -67 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash fPrime2
+bash leaks.bash fPrime2 0 79 >/dev/null 2>&1
 
 rm -rf fPrime fPrime2 real fake

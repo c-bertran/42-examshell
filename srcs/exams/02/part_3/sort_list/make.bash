@@ -14,6 +14,6 @@ clang -Wall -Werror -Wextra $1/sort_list/sort_list.c $1/sort_list/main.c -I ./ -
 ./sortList2 55 65100 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash sortList2 6 748485 >/dev/null &
+bash leaks.bash sortList2 0 5 42 >/dev/null &
 
 rm -rf sortList sortList2 real fake

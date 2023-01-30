@@ -14,6 +14,6 @@ clang -Wall -Werror -Wextra $1/lcm/lcm.c $1/lcm/main.c -o lcm2;
 ./lcm2 7517 54245 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash range2
+bash leaks.bash range2 0 5 12 >/dev/null 2>&1
 
 rm -rf lcm lcm2 real fake

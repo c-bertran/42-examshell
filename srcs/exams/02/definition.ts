@@ -4,7 +4,7 @@ export default {
 	id: 'exam_02',
 	dirName: '02',
 	name: {
-		'en_US': 'Exam 02',
+		'en_US': 'Examen 02',
 		'fr_FR': 'Examen 02'
 	},
 	goal: 100,

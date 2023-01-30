@@ -14,6 +14,6 @@ clang -Wall -Werror -Wextra $1/ft_list_size/ft_list_size.c $1/ft_list_size/main.
 ./listSize2 42 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash listSize2
+bash leaks.bash listSize2 0 7 >/dev/null 2>&1
 
 rm -rf listSize listSize2 real fake
