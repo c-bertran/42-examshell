@@ -2,9 +2,9 @@ import { examDefinition } from '../interface';
 
 export default {
 	id: 'exam_02',
-	dirName: 'exam_02',
+	dirName: '02',
 	name: {
-		'en_US': 'Exan 02',
+		'en_US': 'Exam 02',
 		'fr_FR': 'Examen 02'
 	},
 	goal: 100,
