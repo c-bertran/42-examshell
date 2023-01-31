@@ -12,10 +12,11 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
+
 import 'modules/fspatch';
 import { mkdir } from 'fs/promises';
-import { resolve } from 'path';
-import { argv, exit } from 'process';
+import { dirname, resolve } from 'path';
+import { argv, execPath, exit } from 'process';
 import main from 'modules/main';
 import checklib from 'modules/checklib';
 import checkUpdate from 'modules/checkUpdate';
@@ -26,7 +27,7 @@ import uncaughtException from 'modules/uncaughtException';
 	let instance: main;
 	try {
 		if (argv[2] === '--custom' || argv[2] === '-C') // create dir for custom exam
-			await mkdir(resolve(__dirname, 'exams'), { recursive: true }); 
+			await mkdir(resolve(dirname(execPath), 'exams'), { recursive: true }); 
 		customExamList();
 		await checkUpdate();
 		await checklib();
