@@ -56,30 +56,6 @@ const install = async (resolve: (value: unknown) => void) => {
 		});
 };
 
-const handleMacOS = async (resolve: (value: unknown) => void) => {
-	await prompts({
-		type: 'confirm',
-		name: 'bypass',
-		message: 'Do you want to skip this step (e.g. a false negative) ?',
-		initial: false
-	},
-	{
-		onCancel: () => true
-	})
-		.then((answer: { bypass: boolean }) => {
-			if (answer.bypass)
-				return error('Please install `git`, `clang` and `valgrind` manually', 121);
-			resolve(null);
-		})
-		.catch((error) => {
-			if (error.isTtyError)
-				console.error('Prompt couldn\'t be rendered in the current environment');
-			else
-				console.error(error.message);
-			exit(-1);
-		});
-};
-
 export default (): Promise<unknown> => {
 	if (platform() !== 'linux' && platform() !== 'darwin')
 		error(`${platform()}: unsupported plateform, please use linux or darwin`, 120);
@@ -89,14 +65,29 @@ export default (): Promise<unknown> => {
 			child('clang --version'),
 			child('git --version'),
 		])
-			.then(() => res(true)).catch(() => {
-				if (platform() !== 'linux') {
-					console.error('Under MacOS, automatic installation is unavailable');
-					handleMacOS(res);
-				} else {
-					console.error('Necessary librarie(s) not found, start installation');
-					install(res);
-				}
+			.then(() => res(true))
+			.catch(() => {
+				console.error('Necessary librarie(s) not found');
+				prompts({
+					type: 'confirm',
+					name: 'bypass',
+					message: 'Do you want to skip installation step (e.g. a false negative) ?',
+					initial: false
+				},
+				{ onCancel: () => true })
+					.then((answer: { bypass: boolean }) => {
+						if (Object.keys(answer).length <= 0 || answer.bypass)
+							res(null);
+						else
+							install(res);
+					})
+					.catch((error) => {
+						if (error.isTtyError)
+							console.error('Prompt couldn\'t be rendered in the current environment');
+						else
+							console.error(error.message);
+						exit(-1);
+					});
 			});
 	});
 };

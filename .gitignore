@@ -15,6 +15,7 @@ build
 *.local
 __old
 .rollup.cache
+rollup.config-*.cjs
 
 # Editor directories and files
 .idea
