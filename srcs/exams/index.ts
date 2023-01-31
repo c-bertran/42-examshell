@@ -11,12 +11,15 @@ import checker from 'checker/index';
 import valgrind from 'checker/valgrind';
 import format from 'modules/format';
 import copyDirSync from 'modules/fsCopyDir';
+import customExamList from 'modules/customExamList';
 import spinner from 'modules/spinner';
 import i18n, { lang } from 'langs/index';
 import examList from './exams';
+import { examDefinition } from './interface';
 
 export default class {
 	private randId: () => string;
+	private exams: examDefinition[];
 	public options: { infinite: boolean; doom: boolean; lang: lang };
 	private timer: {
 		interval: undefined | NodeJS.Timer;
@@ -50,7 +53,9 @@ export default class {
 	};
 
 	constructor(id: string, options: { infinite: boolean; doom: boolean; lang: lang }) {
-		const idSelected = examList.findIndex((e) => e.id === id);
+		this.exams = [ ...examList, ...customExamList() ];
+	
+		const idSelected = this.exams.findIndex((e) => e.id === id);
 		if (idSelected === -1)
 			throw new Error(`Exam ${id} is undefined`);
 
@@ -60,12 +65,12 @@ export default class {
 			id: idSelected, step: 0, currentStep: 0, exerciceSelected: 0, retry: 0,
 			goal: {
 				current: 0,
-				max: examList[idSelected].goal,
-				add: Math.ceil(examList[idSelected].goal / examList[idSelected].exercices.length)
+				max: this.exams[idSelected].goal,
+				add: Math.ceil(this.exams[idSelected].goal / this.exams[idSelected].exercices.length)
 			},
 			path: { exercice: '', subject: '', correction: '' }
 		};
-		this.exam.step = examList[this.exam.id].exercices.length;
+		this.exam.step = this.exams[this.exam.id].exercices.length;
 		this.options = options;
 		this.generateId = this.randId();
 
@@ -141,7 +146,7 @@ export default class {
 	}
 
 	info(): void {
-		const exercice = examList[this.exam.id].exercices[this.exam.currentStep][this.exam.exerciceSelected];
+		const exercice = this.exams[this.exam.id].exercices[this.exam.currentStep][this.exam.exerciceSelected];
 		console.log('┌────╮');
 		console.log(`│ ${format.foreground.light.blue}>> ${format.format.reset}${i18n('exercice.start', this.options.lang)} ${format.foreground.light.red}${exercice.name[this.options.lang]}${format.format.reset}`);
 		console.log(`│ ${format.foreground.light.blue}>> ${format.format.reset}${i18n('exercice.dir', this.options.lang)} ${format.foreground.light.green}~/${i18n('git.render', this.options.lang)}/${exercice.name[this.options.lang]}${format.format.reset}`);
@@ -153,13 +158,17 @@ export default class {
 
 	nextExercice(): Promise<void> {
 		this.exam.exerciceSelected = Math.floor(
-			Math.random() * examList[this.exam.id].exercices[this.exam.currentStep].length
+			Math.random() * this.exams[this.exam.id].exercices[this.exam.currentStep].length
 		);
-		const selectExercice = examList[this.exam.id].exercices[this.exam.currentStep][this.exam.exerciceSelected];
+		const selectExercice = this.exams[this.exam.id].exercices[this.exam.currentStep][this.exam.exerciceSelected];
 		this.exam.path = {
 			exercice: resolve(
-				__dirname, 'data', 'exams',
-				examList[this.exam.id].dirName,
+				__dirname,
+				(!this.exams[this.exam.id].custom)
+					? 'data'
+					: '',
+				'exams',
+				this.exams[this.exam.id].dirName,
 				selectExercice.dir ?? '',
 				selectExercice.id
 			),
@@ -252,7 +261,7 @@ export default class {
 
 	private async testExercice(): Promise<void> {
 		return new Promise((res: () => void, rej: (e: { data: any, force?: boolean }) => void) => {
-			const exercice = examList[this.exam.id].exercices[this.exam.currentStep][this.exam.exerciceSelected];
+			const exercice = this.exams[this.exam.id].exercices[this.exam.currentStep][this.exam.exerciceSelected];
 			try {
 				copyFileSync(resolve(__dirname, 'data', 'shell', 'leaks.bash'), resolve(this.exam.path.correction, 'leaks.bash'));
 				copyFileSync(resolve(this.exam.path.exercice, 'make.bash'), resolve(this.exam.path.correction, 'make.bash'));
@@ -334,11 +343,11 @@ export default class {
 		spin.stop();
 		stdout.clearLine(0);
 		++this.exam.retry;
-		this.timer.old += this.timer.old * examList[this.exam.id].exercices[this.exam.currentStep][this.exam.exerciceSelected].exponent;
+		this.timer.old += this.timer.old * this.exams[this.exam.id].exercices[this.exam.currentStep][this.exam.exerciceSelected].exponent;
 		this.timer.retry = this.timer.old;
 		console.log(`${format.foreground.light.red}>>> ${(i18n('grademe.failed', this.options.lang) as string).toUpperCase()} <<<${format.format.reset}`);
 
-		if (examList[this.exam.id].exercices[this.exam.currentStep][this.exam.exerciceSelected].trace || forceTrace) {
+		if (this.exams[this.exam.id].exercices[this.exam.currentStep][this.exam.exerciceSelected].trace || forceTrace) {
 			console.log(`\n${format.foreground.normal.magenta}══ ${(i18n((forceTrace
 				? 'grademe.error'
 				: 'grademe.trace'), this.options.lang) as string).toUpperCase()} ═════════════════════════════${format.format.reset}`);

@@ -8,6 +8,7 @@ import i18n, { lang, langList } from 'langs/index';
 import clock from 'modules/clock';
 import format from 'modules/format';
 import type { Interface } from 'readline';
+import customExamList from './customExamList';
 
 export default class {
 	private punchline: string[];
@@ -62,6 +63,8 @@ export default class {
 	}
 
 	setOptionsAndExam(): Promise<void> {
+		const __exams = [...examList, ...customExamList()];
+		
 		return new Promise((res, rej) => {
 			prompts([
 				{
@@ -83,7 +86,7 @@ export default class {
 					type: 'select',
 					name: 'exam',
 					message: i18n('select.question', this.options.lang) as string,
-					choices: examList.map((e) => ({ title: e.name[this.options.lang], value: e.id }))
+					choices: __exams.map((e) => ({ title: e.name[this.options.lang], value: e.id }))
 				}
 			], {
 				onCancel: () => {
@@ -96,7 +99,7 @@ export default class {
 						this.options.infinite = true;
 					if (answer.options.length &&  answer.options.indexOf('--doom') !== -1)
 						this.options.doom = true;
-					for (const exam of examList) {
+					for (const exam of __exams) {
 						if (exam.id === answer.exam) {
 							this.examInstance = new exams(answer.exam, this.options);
 							this.clockInstance = new clock(exam.time);

@@ -1,6 +1,6 @@
 /**
  * examshell
- * Copyright (C) 2022 - 2023 Clément Bertrand (https://gitlab.com/cbertran/mapcraft-api)
+ * Copyright (C) 2022 - 2023 Clément Bertrand (https://github.com/c-bertran/examshell)
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -12,17 +12,22 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  */
-
 import 'modules/fspatch';
-import { exit } from 'process';
+import { mkdir } from 'fs/promises';
+import { resolve } from 'path';
+import { argv, exit } from 'process';
 import main from 'modules/main';
 import checklib from 'modules/checklib';
 import checkUpdate from 'modules/checkUpdate';
+import customExamList from 'modules/customExamList';
 import uncaughtException from 'modules/uncaughtException';
 
 (async () => {
 	let instance: main;
 	try {
+		if (argv[2] === '--custom' || argv[2] === '-C') // create dir for custom exam
+			await mkdir(resolve(__dirname, 'exams'), { recursive: true }); 
+		customExamList();
 		await checkUpdate();
 		await checklib();
 		instance = new main();

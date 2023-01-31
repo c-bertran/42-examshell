@@ -4,7 +4,7 @@ export default {
 	id: 'exam_02',
 	dirName: '02',
 	name: {
-		'en_US': 'Examen 02',
+		'en_US': 'Exam 02',
 		'fr_FR': 'Examen 02'
 	},
 	goal: 100,
@@ -281,6 +281,21 @@ export default {
 				}
 			},
 			{
+				id: 'ft_strcspn',
+				dir: 'part_1',
+				name: {
+					'en_US': 'ft_strcspn',
+					'fr_FR': 'ft_strcspn'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				copy: {
+					check: ['ft_strcspn.c', 'main.c']
+				}
+			},
+			{
 				id: 'ft_strdup',
 				dir: 'part_1',
 				name: {
@@ -356,7 +371,7 @@ export default {
 				moulinette: true,
 				leaks: true,
 				copy: {
-					check: ['main.c']
+					check: ['main.c', 'max.c']
 				}
 			},
 			{
@@ -500,6 +515,22 @@ export default {
 				allowed_functions: ['malloc'],
 				copy: {
 					check: ['ft_range.c', 'main.c']
+				}
+			},
+			{
+				id: 'ft_rrange',
+				dir: 'part_2',
+				name: {
+					'en_US': 'ft_rrange',
+					'fr_FR': 'ft_rrange'
+				},
+				exponent: 4,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['malloc'],
+				copy: {
+					check: ['ft_rrange.c', 'main.c']
 				}
 			},
 			{

@@ -20,6 +20,7 @@ export interface examDefinition {
 	hide?: boolean,
 	id: string;
 	dirName: string;
+	custom?: boolean;
 	name: Record<lang, string>;
 	goal: number;
 	time: string;

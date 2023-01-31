@@ -38,7 +38,7 @@ module.exports = {
 		'multiline-ternary': ['error', 'always'],
 		'no-tabs': ['error', { allowIndentationTabs: true }]
 	},
-	ignorePatterns: ['dist'],
+	ignorePatterns: ['dist', 'srcs/commands/iddqd/bundle.jsdos', 'srcs/commands/iddqd/index.html' ,'srcs/commands/iddqd/js-dos'],
 	overrides: [
 		{
 			files: ['*.ts', '*.tsx'],

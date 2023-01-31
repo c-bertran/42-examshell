@@ -21,8 +21,8 @@
     "start": "node dist/index.cjs.js",
     "build": "rollup --bundleConfigAsCjs --config rollup.config.js",
     "watch": "rollup -w --bundleConfigAsCjs --config rollup.config.js",
-    "pkg:build": "pkg --compress Brotli --output dist/examshell .",
-    "pkg:debug": "pkg --debug --output dist/examshell .",
+    "pkg:build": "pkg --compress Brotli --output build/examshell .",
+    "pkg:debug": "pkg --debug --output build .",
     "lint": "./node_modules/.bin/eslint --fix ."
   },
   "pkg": {

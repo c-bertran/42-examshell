@@ -12,7 +12,6 @@ import status from './status';
 import { command } from './interface';
 import { stdout } from 'process';
 
-
 interface fuzzy {
 	name: string;
 	ratio: number;

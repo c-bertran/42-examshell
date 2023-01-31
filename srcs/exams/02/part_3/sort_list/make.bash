@@ -7,7 +7,7 @@ clang -Wall -Werror -Wextra sort_list.c main.c -I ./ -o sortList;
 ./sortList 42 23 >> real
 ./sortList 55 65100 >> real
 
-clang -Wall -Werror -Wextra $1/sort_list/sort_list.c $1/sort_list/main.c -I ./ -o sortList2;
+clang -Wall -Werror -Wextra $1/sort_list/sort_list.c $1/sort_list/main.c -I ./$1/sort_list/ -o sortList2;
 ./sortList2 5 42 > fake
 ./sortList2 6 748485 >> fake
 ./sortList2 42 23 >> fake
