@@ -2,11 +2,7 @@ import { exec } from 'child_process';
 import { platform, tmpdir } from 'os';
 import { exit, stdout } from 'process';
 import prompts from 'prompts';
-
-const error = (error = '', code = 127): void => {
-	console.error(`[Error ${code}] ${error}`);
-	exit(code);
-};
+import error from './error';
 
 const child = (command: string, ispipe = false): Promise<unknown> => {
 	return new Promise((resolve, reject) => {
@@ -34,7 +30,7 @@ const install = async (resolve: (value: unknown) => void) => {
 		name: 'password',
 		message: 'Password'
 	}, {
-		onCancel: () => error('The prompt was cancelled. Please install `git`, `clang` and `valgrind` manually, or restart this application for retry', 122),
+		onCancel: () => error(3, { exit: true }),
 	})
 		.then((answer: { password: string }) => {
 			child(`echo "${answer.password}" | sudo -k -S apt-get install -y valgrind git clang`, true)
@@ -43,13 +39,13 @@ const install = async (resolve: (value: unknown) => void) => {
 					resolve(true);
 				})
 				.catch(() => {
-					console.error('User password is incorrect');
+					error(4);
 					install(resolve);
 				});
 		})
 		.catch((error) => {
 			if (error.isTtyError)
-				console.error('Prompt couldn\'t be rendered in the current environment');
+				error(5, { exit: true });
 			else
 				console.error(error.message);
 			exit(-1);
@@ -58,7 +54,7 @@ const install = async (resolve: (value: unknown) => void) => {
 
 export default (): Promise<unknown> => {
 	if (platform() !== 'linux' && platform() !== 'darwin')
-		error(`${platform()}: unsupported plateform, please use linux or darwin`, 120);
+		error(1);
 	return new Promise((res) => {
 		Promise.all([
 			child('valgrind --version'),
@@ -67,7 +63,7 @@ export default (): Promise<unknown> => {
 		])
 			.then(() => res(true))
 			.catch(() => {
-				console.error('Necessary librarie(s) not found');
+				error(2);
 				prompts({
 					type: 'confirm',
 					name: 'bypass',
@@ -83,7 +79,7 @@ export default (): Promise<unknown> => {
 					})
 					.catch((error) => {
 						if (error.isTtyError)
-							console.error('Prompt couldn\'t be rendered in the current environment');
+							error(5, { exit: true });
 						else
 							console.error(error.message);
 						exit(-1);

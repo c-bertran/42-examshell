@@ -3,6 +3,7 @@ import { existsSync, readdirSync, readFileSync } from 'fs';
 import { resolve } from 'path';
 import { examDefinition } from 'exams/interface';
 import format from './format';
+import error from './error';
 
 const __exams__: examDefinition[] = [];
 
@@ -39,11 +40,7 @@ export default (): examDefinition[] => {
 				const __json = JSON.parse(readFileSync(__path) as any);
 				const errors = checkObj(__json);
 				if (errors.length) {
-					console.error(`${format.foreground.normal.red}══════════════ ${format.foreground.normal.yellow}⚠${format.format.reset}  Custom exam error ${format.foreground.normal.yellow}⚠${format.format.reset}  ${format.foreground.normal.red}══════════════${format.format.reset}`);
-					console.error(`${format.foreground.normal.magenta}══ Path    ═════════════════════════════${format.format.reset}`);
-					console.error(`${__path}`);
-					console.error(`\n${format.foreground.normal.magenta}══ Message ═════════════════════════════${format.format.reset}`);
-					console.error(errors.join('\n'));
+					error(10, { exit: true, data: errors.join('\n')});
 					throw new Error('exam_error');
 				}
 				__json.custom = true;

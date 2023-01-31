@@ -9,6 +9,7 @@ import clock from 'modules/clock';
 import format from 'modules/format';
 import type { Interface } from 'readline';
 import customExamList from './customExamList';
+import error from './error';
 
 export default class {
 	private punchline: string[];
@@ -90,7 +91,7 @@ export default class {
 				}
 			], {
 				onCancel: () => {
-					console.error(i18n('select.error', this.options.lang));
+					error(20, { data: i18n('select.error', this.options.lang) as string });
 					rej('prompt_stop');
 				}
 			})
@@ -111,7 +112,7 @@ export default class {
 				})
 				.catch((e) => {
 					if (e.isTtyError)
-						console.error(i18n('select.prompt', this.options.lang));
+						error(5, { exit: true });
 					else
 						console.error(e.message);
 					rej('prompt_error');

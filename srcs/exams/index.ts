@@ -11,6 +11,7 @@ import checker from 'checker/index';
 import valgrind from 'checker/valgrind';
 import format from 'modules/format';
 import copyDirSync from 'modules/fsCopyDir';
+import error from 'modules/error';
 import customExamList from 'modules/customExamList';
 import spinner from 'modules/spinner';
 import i18n, { lang } from 'langs/index';
@@ -57,7 +58,7 @@ export default class {
 	
 		const idSelected = this.exams.findIndex((e) => e.id === id);
 		if (idSelected === -1)
-			throw new Error(`Exam ${id} is undefined`);
+			error(30, { data: id, exit: true });
 
 		this.randId = () => randomBytes(Math.ceil(16 / 2)).toString('hex').slice(0, 16);
 		this.timer = { interval: undefined, retry: 0, old: 0 };
@@ -84,7 +85,7 @@ export default class {
 		try {
 			rmSync(this.git.temp, { recursive: true, force: true });
 		} catch (e: any) {
-			throw new Error(e);
+			error(31, { exit: true });
 		}
 	}
 
@@ -99,7 +100,7 @@ export default class {
 				resolve(this.git.render, 'init.bash')
 			);
 		} catch (e) {
-			throw new Error('mkdirSync or copyFileSync failed');
+			error(32, { exit: true });
 		}
 	}
 

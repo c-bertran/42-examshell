@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync, statSync } from 'fs';
 import { basename, extname, resolve } from 'path';
+import error from 'modules/error';
 import keywords, { definition } from './keywords';
 
 class parser {
@@ -259,8 +260,7 @@ export default class {
 				: '',
 		};
 		if (checkArgs.directory.length || checkArgs.functions.length || checkArgs.forbiddenKeywords.length)
-			throw new Error(`${checkArgs.directory}${checkArgs.functions}${checkArgs.forbiddenKeywords}`);
-
+			error(40, { data: `${checkArgs.directory}${checkArgs.functions}${checkArgs.forbiddenKeywords}` });
 		this.list = this.tree_files(directory) as (string | string[])[][];
 		this.parser = new parser(step, autorizedFunctions, forbiddenKeywords);
 	}

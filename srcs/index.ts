@@ -17,6 +17,7 @@ import 'modules/fspatch';
 import { mkdir } from 'fs/promises';
 import { dirname, resolve } from 'path';
 import { argv, execPath, exit } from 'process';
+import { __lastErrorCode__ } from 'modules/error';
 import main from 'modules/main';
 import checklib from 'modules/checklib';
 import checkUpdate from 'modules/checkUpdate';
@@ -38,7 +39,7 @@ import uncaughtException from 'modules/uncaughtException';
 		instance.manageClock();
 		instance.startPrompt();
 	} catch {
-		exit(127);
+		exit(__lastErrorCode__);
 	}
 })();
 

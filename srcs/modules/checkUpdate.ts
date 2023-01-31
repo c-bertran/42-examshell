@@ -1,5 +1,6 @@
 import { get } from 'https';
 import { stdout } from 'process';
+import error from './error';
 
 import format from './format';
 import spinner from './spinner';
@@ -53,7 +54,7 @@ export default async (): Promise<void> => {
 				spin.stop();
 				stdout.clearLine(0);
 				stdout.write(format.erase.erase);
-				console.log('An error has occurred, the update search is skipped');
+				error(6);
 				resolve();
 			})
 			.setTimeout(15000);
