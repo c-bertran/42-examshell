@@ -8,7 +8,7 @@ import i18n, { lang, langList } from 'langs/index';
 import clock from 'modules/clock';
 import format from 'modules/format';
 import type { Interface } from 'readline';
-import customExamList from './customExamList';
+import customExamList, { getConfig } from './customExamList';
 import error from './error';
 
 export default class {
@@ -31,23 +31,26 @@ export default class {
 			'Nightmare',
 		];
 		this.options = {
-			infinite: false,
-			doom: false,
-			lang: 'en_US'
+			infinite: getConfig().options.infinite,
+			doom: getConfig().options.doom,
+			lang: getConfig().options.lang
 		};
 		this.examInstance = undefined;
 		this.clockInstance = undefined;
 
-		console.log('\n███████╗██╗  ██╗ █████╗ ███╗   ███╗███████╗██╗  ██╗███████╗██╗     ██╗\n██╔════╝╚██╗██╔╝██╔══██╗████╗ ████║██╔════╝██║  ██║██╔════╝██║     ██║\n█████╗   ╚███╔╝ ███████║██╔████╔██║███████╗███████║█████╗  ██║     ██║\n██╔══╝   ██╔██╗ ██╔══██║██║╚██╔╝██║╚════██║██╔══██║██╔══╝  ██║     ██║\n███████╗██╔╝ ██╗██║  ██║██║ ╚═╝ ██║███████║██║  ██║███████╗███████╗███████╗\n╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝\nby cbertran (cbertran@student.42.fr)\n');
+		if (getConfig().signature)
+			console.log('\n███████╗██╗  ██╗ █████╗ ███╗   ███╗███████╗██╗  ██╗███████╗██╗     ██╗\n██╔════╝╚██╗██╔╝██╔══██╗████╗ ████║██╔════╝██║  ██║██╔════╝██║     ██║\n█████╗   ╚███╔╝ ███████║██╔████╔██║███████╗███████║█████╗  ██║     ██║\n██╔══╝   ██╔██╗ ██╔══██║██║╚██╔╝██║╚════██║██╔══██║██╔══╝  ██║     ██║\n███████╗██╔╝ ██╗██║  ██║██║ ╚═╝ ██║███████║██║  ██║███████╗███████╗███████╗\n╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝\nby cbertran (cbertran@student.42.fr)\n');
 	}
 
 	setLang(): Promise<void> {
-		const langArr: { title: string, value: string }[] = [];
-		for (const key in langList) {
-			if (Object.prototype.hasOwnProperty.call(langList, key))
-				langArr.push({ title: langList[key as lang], value: key });
-		}
 		return new Promise((res, rej) => {
+			if (getConfig().options.lang)
+				return res();
+			const langArr: { title: string, value: string }[] = [];
+			for (const key in langList) {
+				if (Object.prototype.hasOwnProperty.call(langList, key))
+					langArr.push({ title: langList[key as lang], value: key });
+			}
 			prompts({
 				type: 'select',
 				name: 'lang',
@@ -64,9 +67,20 @@ export default class {
 	}
 
 	setOptionsAndExam(): Promise<void> {
-		const __exams = [...examList, ...customExamList()];
-		
 		return new Promise((res, rej) => {
+			const __exams = [...examList, ...customExamList()];
+			if (getConfig().exam) {
+				for (const exam of __exams) {
+					if (exam.id === getConfig().exam) {
+						this.examInstance = new exams(getConfig().exam as string, this.options);
+						this.clockInstance = new clock(exam.time);
+						this.examInstance.init();
+						return res();
+					}
+				}
+				error(30, { exit: true });
+				return rej();
+			}
 			prompts([
 				{
 					type: 'multiselect',

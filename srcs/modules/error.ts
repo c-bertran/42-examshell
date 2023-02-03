@@ -9,6 +9,7 @@ const list: Record<number, string> = {
 	6: 'An error has occurred, the update search is skipped',
 
 	10: 'Custom exam error',
+	11: 'Config exam error',
 
 	20: 'Prompt error',
 

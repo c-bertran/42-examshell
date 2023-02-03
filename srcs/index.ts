@@ -21,7 +21,7 @@ import { __lastErrorCode__ } from 'modules/error';
 import main from 'modules/main';
 import checklib from 'modules/checklib';
 import checkUpdate from 'modules/checkUpdate';
-import customExamList from 'modules/customExamList';
+import customExamList, { getConfig } from 'modules/customExamList';
 import uncaughtException from 'modules/uncaughtException';
 
 (async () => {
@@ -30,8 +30,11 @@ import uncaughtException from 'modules/uncaughtException';
 		if (argv[2] === '--custom' || argv[2] === '-C') // create dir for custom exam
 			await mkdir(resolve(dirname(execPath), 'exams'), { recursive: true }); 
 		customExamList();
-		await checkUpdate();
-		await checklib();
+		getConfig();
+		if (getConfig().checkUpdate)
+			await checkUpdate();
+		if (getConfig().checkLib)
+			await checklib();
 		instance = new main();
 		await instance.setLang();
 		await instance.setOptionsAndExam();
