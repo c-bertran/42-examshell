@@ -14,15 +14,15 @@ int ft_strlen(char *str)
 	return (i);
 }
 
-int main(int ac, char *av[])
+int main(int argc, char *argv[])
 {
 	char *tmp;
 	char *rev;
 	int len;
 
-	if (ac == 2)
+	if (argc == 2)
 	{
-		tmp = av[1];
+		tmp = argv[1];
 		len = ft_strlen(tmp);
 		rev = NULL;
 		len--;

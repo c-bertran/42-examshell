@@ -5,6 +5,8 @@ char	**ft_split(char *str);
 
 int main(int argc, char **argv)
 {
+	(void)argc;
+
 	char	**split = ft_split(argv[1]);
 
 	for (int i = 0; split[i]; i++)

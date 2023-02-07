@@ -4,6 +4,8 @@ unsigned char	swap_bits(unsigned char octet);
 
 int	main(int argc, char **argv)
 {
+	(void)argc;
+
 	unsigned char c;
 
 	c = argv[1][0];

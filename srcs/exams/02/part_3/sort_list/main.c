@@ -73,6 +73,7 @@ void _free(t_list *start) {
 int	main(int argc, char **argv)
 {
 	(void)argc;
+
 	int len = atoi(argv[1]);
 	t_list *list = malloc(sizeof(t_list));
 	t_list *list2 = malloc(sizeof(t_list));

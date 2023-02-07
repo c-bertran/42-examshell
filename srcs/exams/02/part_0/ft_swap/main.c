@@ -4,6 +4,8 @@ void	ft_swap(int *a, int *b);
 
 int main(int argc, char **argv)
 {
+	(void)argc;
+
 	int	*a, *b;
 	int	n1, n2;
 

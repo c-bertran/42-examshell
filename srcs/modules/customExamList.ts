@@ -45,10 +45,13 @@ const checkObj = (obj: any): string[] => {
 
 export const getConfig = (): config => {
 	const is = (s: string, o: any) => Object.prototype.hasOwnProperty.call(o, s);
-	if (!__config__ && existsSync(resolve(__dirname, 'exams', 'config.json'))) {
-		const file = JSON.parse(
-			readFileSync(resolve(__dirname, 'exams', 'config.json'), { encoding: 'utf-8' })
-		);
+	if (!__config__) {
+		let file: Record<string, any> = {};
+		if (existsSync(resolve(__dirname, 'exams', 'config.json'))) {
+			file = JSON.parse(
+				readFileSync(resolve(__dirname, 'exams', 'config.json'), { encoding: 'utf-8' })
+			);
+		}
 		__config__ = {
 			checkUpdate: true,
 			checkLib: true,
@@ -60,25 +63,27 @@ export const getConfig = (): config => {
 				lang: 'en_US'
 			}
 		};
-		if (is('checkUpdate', file))
-			__config__.checkUpdate = file.checkUpdate;
-		if (is('checkLib', file))
-			__config__.checkLib = file.checkLib;
-		if (is('signature', file))
-			__config__.signature = file.signature;
-		if (is('exam', file))
-			__config__.exam = file.exam;
-		if (is('options', file)) {
-			if (is('doom', file.options))
-				__config__.options.doom = file.options.doom;
-			if (is('infinite', file.options))
-				__config__.options.infinite = file.options.infinite;
-			if (is('lang', file.options)) {
-				if (!is(file.options.lang, langList)) {
-					error(11, { exit: true, data: `defined lang ${file.lang} not exist`});
-					throw new Error('config_error');
-				} else
-					__config__.options.lang = file.options.lang;
+		if (Object.keys(file).length) {
+			if (is('checkUpdate', file))
+				__config__.checkUpdate = file.checkUpdate;
+			if (is('checkLib', file))
+				__config__.checkLib = file.checkLib;
+			if (is('signature', file))
+				__config__.signature = file.signature;
+			if (is('exam', file))
+				__config__.exam = file.exam;
+			if (is('options', file)) {
+				if (is('doom', file.options))
+					__config__.options.doom = file.options.doom;
+				if (is('infinite', file.options))
+					__config__.options.infinite = file.options.infinite;
+				if (is('lang', file.options)) {
+					if (!is(file.options.lang, langList)) {
+						error(11, { exit: true, data: `defined lang ${file.lang} not exist`});
+						throw new Error('config_error');
+					} else
+						__config__.options.lang = file.options.lang;
+				}
 			}
 		}
 	}

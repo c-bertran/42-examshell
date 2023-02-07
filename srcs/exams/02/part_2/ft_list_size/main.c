@@ -32,7 +32,7 @@ void _free(t_list *start) {
 int	main(int argc, char **argv)
 {
 	(void)argc;
-	(void)argv;
+
 	int n = 42;
 	int len = atoi(argv[1]);
 	t_list *start = malloc(sizeof(t_list));
