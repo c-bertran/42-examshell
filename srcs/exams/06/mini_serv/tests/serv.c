@@ -1,159 +1,107 @@
-#include <errno.h>
+#include <string.h>
+#include <unistd.h>
 #include <netdb.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <string.h>
-#include <unistd.h>
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-int clients = 0, fd_max = 0, clientId[65536];
-char *msg[65536] = { NULL };
-char readBuf[2049], writeBuf[128];
-fd_set readFds, writeFds, fds;
+typedef struct	s_client {
+	int						id;
+	char					msg[1024];
+}								t_client;
 
-int extract_message(char **buf, char **msg)
-{
-	char	*newbuf;
-	int	i;
+t_client				clients[1024];
+fd_set					readFds, writeFds, fds;
+int							max = 0, next = 0;
+char						readBuf[120000], writeBuf[120000];
 
-	*msg = 0;
-	if (*buf == 0)
-		return (0);
-	i = 0;
-	while ((*buf)[i])
-	{
-		if ((*buf)[i] == '\n')
-		{
-			newbuf = calloc(1, sizeof(*newbuf) * (strlen(*buf + i + 1) + 1));
-			if (newbuf == 0)
-				return (-1);
-			strcpy(newbuf, *buf + i + 1);
-			*msg = *buf;
-			(*msg)[i + 1] = 0;
-			*buf = newbuf;
-			return (1);
-		}
-		i++;
+
+void						print_data(int isNotFd) {
+	for (int fd = 0; fd <= max; fd++) {
+		if (FD_ISSET(fd, &writeFds) && fd != isNotFd)
+			send(fd, writeBuf, strlen(writeBuf), 0);
 	}
-	return (0);
 }
 
-char *str_join(char *buf, char *add)
-{
-	char	*newbuf;
-	int		len;
+void						ft_putstr(int fd, char *s) {
+	write(fd, s, strlen(s));
+}
 
-	if (buf == 0)
-		len = 0;
+void						error(char *s) {
+	if (s)
+		ft_putstr(STDERR_FILENO, s);
 	else
-		len = strlen(buf);
-	newbuf = malloc(sizeof(*newbuf) * (len + strlen(add) + 1));
-	if (newbuf == 0)
-		return (0);
-	newbuf[0] = 0;
-	if (buf != 0)
-		strcat(newbuf, buf);
-	free(buf);
-	strcat(newbuf, add);
-	return (newbuf);
-}
-
-void putstr(int fd, char *s) { write(fd, s, strlen(s)); }
-
-void fatal_error()
-{
-    putstr(2, "Fatal error\n");
+		ft_putstr(STDERR_FILENO, "Fatal error\n");
 	exit(1);
 }
 
-void print_data(int user, char *str)
-{
-	for (int fd = 0; fd <= fd_max; fd++)
-		if (FD_ISSET(fd, &writeFds) && user != fd)
-			send(fd, str, strlen(str), 0);
-}
 
-int main(int argc, char **argv)
-{
-	if (argc < 2)
-	{
-		write(2, "Wrong number of arguments\n", 25);
-		exit(1);
-	}
+int							main(int argc, char **argv) {
+	struct sockaddr_in  server;
+	socklen_t           len;
+	
+	if (argc != 2)
+		error("Wrong number of arguments\n");
 
-	fd_max = socket(AF_INET, SOCK_STREAM, 0);
-	if (fd_max < 0)
-		fatal_error();
-	FD_ZERO(&fds);
-	FD_SET(fd_max, &fds);
+	int socketFd = socket(AF_INET, SOCK_STREAM, 0);
+	if (socketFd < 0)
+		error(NULL);
 
-	int socket = fd_max;
-	struct sockaddr_in server;
 	bzero(&server, sizeof(server));
-	server.sin_family = AF_INET;
-	server.sin_addr.s_addr = htonl(2130706433);
-	server.sin_port = htons(atoi(argv[1]));
-	if (bind(socket, (const struct sockaddr *)&server, sizeof(server)))
-		fatal_error();
-	if (listen(socket, SOMAXCONN))
-		fatal_error();
+	bzero(&clients, sizeof(clients));
+	FD_ZERO(&fds);
+	FD_SET(socketFd, &fds);
 
-	while (1)
-	{
-		readFds = fds;
-		writeFds = fds;
-		if (select(fd_max + 1, &readFds, &writeFds, NULL, NULL) < 0)
-			fatal_error();
-		for (int fd = 0; fd <= fd_max; fd++)
-		{
-			if (FD_ISSET(fd, &readFds))
-			{
-				if (fd == socket)
-				{
-					socklen_t address = sizeof(server);
-					int client = accept(socket, (struct sockaddr *)&server, &address);
-					if (client >= 0)
-					{
-						// Add client
-						fd_max = (client > fd_max) ? client : fd_max;
-						clientId[client] = clients++;
-						msg[client] = NULL;
-						FD_SET(client, &fds);
-						sprintf(writeBuf, "server: client %d just arrived\n", clientId[client]);
-						print_data(client, writeBuf);
-						break;
-					}
-				}
-				else
-				{
-					ssize_t readSize = recv(fd, readBuf, 2048, 0);
-					if (readSize <= 0)
-					{
-						// Delete client
-						sprintf(writeBuf, "server: client %d just left\n", clientId[fd]);
-						print_data(fd, writeBuf);
-						free(msg[fd]);
-						msg[fd] = NULL;
+	max = socketFd;
+	server.sin_family = AF_INET;
+	server.sin_addr.s_addr = htonl(2130706433); //127.0.0.1
+	server.sin_port = htons(atoi(argv[1]));
+
+	if ((bind(socketFd, (const struct sockaddr *)&server, sizeof(server))) < 0)
+		error(NULL);
+	if (listen(socketFd, SOMAXCONN) < 0)
+		error(NULL);
+
+	while (1) {
+		readFds = writeFds = fds;
+		if (select(max + 1, &readFds, &writeFds, NULL, NULL) < 0)
+			continue;
+		for (int fd = 0; fd <= max; fd++) {
+			if (FD_ISSET(fd, &readFds)) {
+				if (fd == socketFd) {
+					int connectFd = accept(socketFd, (struct sockaddr *)&server, &len);
+					if (connectFd < 0)
+						continue;
+					if (connectFd > max)
+						max = connectFd;
+					clients[connectFd].id = next++;
+					FD_SET(connectFd, &fds);
+					sprintf(writeBuf, "server: client %d just arrived\n", clients[connectFd].id);
+					print_data(connectFd);
+				} else {
+					int res = recv(fd, readBuf, 65536, 0);
+					if (res > 0) {
+						for (int x = 0, len = strlen(clients[fd].msg); x < res; x++, len++) {
+							clients[fd].msg[len] = readBuf[x];
+							if (clients[fd].msg[len] == '\n') {
+								clients[fd].msg[len] = '\0';
+								sprintf(writeBuf, "client %d: %s\n", clients[fd].id, clients[fd].msg);
+								print_data(fd);
+								bzero(&clients[fd].msg, strlen(clients[fd].msg));
+								len = -1;
+							}
+						}
+					} else {
+						sprintf(writeBuf, "server: client %d just left\n", clients[fd].id);
+						print_data(fd);
 						FD_CLR(fd, &fds);
 						close(fd);
-						break;
 					}
-					// Print message
-					char *temp;
-					readBuf[readSize] = '\0';
-					msg[fd] = str_join(msg[fd], readBuf);
-					while (extract_message(&(msg[fd]), &temp))
-					{
-						sprintf(writeBuf, "client %d: ", clientId[fd]);
-						print_data(fd, writeBuf);
-						print_data(fd, temp);
-						free(temp);
-						temp = NULL;
-					}
-				}	
+				}
+				break;
 			}
 		}
 	}
-    return 0;
+	return 0;
 }

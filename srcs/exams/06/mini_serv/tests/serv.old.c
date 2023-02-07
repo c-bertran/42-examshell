@@ -63,7 +63,7 @@ void putstr(int fd, char *s) { write(fd, s, strlen(s)); }
 
 void fatal_error()
 {
-    putstr(2, "Fatal error\n");
+  putstr(2, "Fatal error\n");
 	exit(1);
 }
 
@@ -76,9 +76,9 @@ void print_data(int user, char *str)
 
 int main(int argc, char **argv)
 {
-	if (argc < 2)
+	if (argc != 2)
 	{
-		write(2, "Wrong number of arguments\n", 25);
+		write(2, "Wrong number of arguments\n", 26);
 		exit(1);
 	}
 
@@ -155,5 +155,5 @@ int main(int argc, char **argv)
 			}
 		}
 	}
-    return 0;
+  return 0;
 }

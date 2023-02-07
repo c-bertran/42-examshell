@@ -7,7 +7,8 @@
 
 <img src="md/main.gif"></img>
 
-- [`Examshell`](#examshell)
+<h1>Examshell will allow you to practice to be perfectly ready for the 42 exams</h1>
+
 - [Exams](#exams)
 - [Setup](#setup)
 - [How to use](#how-to-use)
@@ -19,14 +20,10 @@
 - [Disclaimer](#disclaimer)
 - [License](#license)
 
-## `Examshell`
-
-`Examshell` will allow you to practice to be perfectly ready for the exams
-
 This one will have the same behaviors as the real examshell:
 - Several exercises can be available per level, chosen randomly
 - Your rendering must be committed via git
-- A Moulinette will go over your code to check for forbidden functions, and possible leaks
+- A moulinette will go over your code to check for forbidden functions, and possible leaks
 - Then your program will be compared with the _real_ program
 
 Some options have been added:
@@ -36,7 +33,7 @@ Some options have been added:
   - `Doom`: To make your practice harder, if you fail the whole rendering folder is reset, as well as the associated git
 
 ## Exams
-The following exams are available:
+The following exams are available natively:
 - Exam 02
 - Exam 03
 - Old exam 03
@@ -95,18 +92,18 @@ If you want to share your exam, don't hesitate to open a issue with the exam lab
 
 ### Install a custom exam
 1. Create a `exams` directory in the root of the application, or launch `./examshell -C`
-2. Paste in your file containing the personalized exam
+2. Paste exam in this directory
 3. Start application, if exam is correct, it will appear in the selection list
 
 ### Create a custom exam
 1. Create a `exams` directory in the root of the application, or launch `./examshell -C`
 2. Create a folder that will contain your exam, for example `hello`
-3. In this folder, create a file named `definition.ts`
+3. In this folder, create a file named `definition.js`
    This file will contain all the information necessary for Examshell to know how it works.
 
 	 ### Main structure
 	 Its structure is based on a precise interface, for example:
-	 ```typescript
+	 ```javascript
 	{
 		"id": "my_custom_exam",
 		"dirName": "hello",
@@ -137,7 +134,7 @@ If you want to share your exam, don't hesitate to open a issue with the exam lab
 
    ### Exercice structure
 	 Let's go into more detail on the definition of an exercise:
-	  ```typescript
+	  ```javascript
 		{
 			...
 			"exercices": [
@@ -170,7 +167,7 @@ If you want to share your exam, don't hesitate to open a issue with the exam lab
 	 - `exponent` : represents the number of points you want to give to the exercise. For example if your goal is 100 and you want two exercises, the exponent will be 2
 	 - `trace` : the trace will be displayed in case of an error
 	 - `allowed_functions` : a list of strings representing the names of the functions you want to allow in the code
-	 - `moulinette` : pass the mill on the code
+	 - `moulinette` : pass the moulinette on the code
 	 - `leaks` : check if the program does not leaks or has no file descriptor open
 	 - `copy` : Represents the list of files of directories that will be copied to the user via the user argument, or during the correction via the check argument. Accept glob string
 
@@ -178,22 +175,21 @@ If you want to share your exam, don't hesitate to open a issue with the exam lab
 
 	### Exercice directory structure
 	```shell
-		one
-		├─ subjects/
-		│  ├─ en_US
-		│  ├─ fr_FR
-		├─ make.bash
+	one
+	├─ subjects/
+	│  ├─ en_US
+	│  ├─ fr_FR
+	├─ make.bash
 	```
 	An exercise has at least a `subjects` folder containing the subjects in several languages, and a file named `make.bash`, which will be executed by examshell to check the exercise. You can add all the files and folders you want. These are the files and folders that are accessible via the copy option in the exercise definition.
 	  
 	### *leaks.bash*
 	During the correction, a bash script named `leaks.bash` is copied into the correction folder.
-  This script as its name indicates will generate logs of valgrind. This one accepts two arguments minimum: first the executable you want to test, second the identifier of your current test (for example if you make 3 tests, you will be able to generate the log 1, 2 and 3)
+  This script as its name indicates will generate logs of valgrind. This one accepts two arguments minimum: first the executable you want to test, second the identifier of your current test (for example if you make 3 tests, you will be able to generate the log 1, 2 and 3). All other arguments will be passed to your program
 	For exemple:
 	```shell
-    bash leaks.bash my_exec $ID ...
+  	bash leaks.bash my_exec $ID ...
 	```
-	
 
 ## Disclaimer
 The exams available are based as closely as possible on the official exams at 42, however there may be some differences.

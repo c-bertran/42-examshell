@@ -24,7 +24,7 @@ export default {
 				forbidden_keywords: ['define'],
 				allowed_functions: ['write', 'close', 'select', 'socket', 'accept', 'listen', 'send', 'recv', 'bind', 'strstr', 'malloc', 'realloc', 'free', 'calloc', 'bzero', 'atoi', 'sprintf', 'strlen', 'exit', 'strcpy', 'strcat', 'memset'],
 				copy: {
-					user: ['main.c'],
+					user: ['main.c', 'nc'],
 					check: ['tests']
 				}
 			}
