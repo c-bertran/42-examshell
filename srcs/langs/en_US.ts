@@ -8,7 +8,7 @@ export default {
 		]
 	},
 	select: {
-		question: 'Select your exam',
+		question: 'Select your exam (you can write your search)',
 		error: 'For the program to work properly, you must at least select an exam. To do this, restart the application',
 		prompt: 'Prompt couldn\'t be rendered in the current environment'
 	},

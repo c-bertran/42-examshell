@@ -8,7 +8,7 @@ export default {
 		]
 	},
 	select: {
-		question: 'Sélectionnez votre examen',
+		question: 'Sélectionnez votre examen (vous pouvez écrire votre recherche)',
 		error: 'Pour que le programme fonctionne correctement, vous devez au moins sélectionner un examen. Pour ce faire, redémarrez l\'application',
 		prompt: 'L\'invité de commande n\'a pas pu être rendue dans l\'environnement actuel'
 	},
