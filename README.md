@@ -85,7 +85,6 @@ It has the following options:
 - options.infinite `boolean` : There is no time limit anymore
 - options.lang `string` : Selected lang
 
-
 ## Create or install custom exam
 Starting with version `0.3.0` examshell allows you to create your own exams in a simple and concise way.
 If you want to share your exam, don't hesitate to open a issue with the exam label so that it can be added to a list.
@@ -181,8 +180,13 @@ If you want to share your exam, don't hesitate to open a issue with the exam lab
 	│  ├─ fr_FR
 	├─ make.bash
 	```
+	
 	An exercise has at least a `subjects` folder containing the subjects in several languages, and a file named `make.bash`, which will be executed by examshell to check the exercise. You can add all the files and folders you want. These are the files and folders that are accessible via the copy option in the exercise definition.
-	  
+	The first argument (*$1*) sent to `make.bash` is the path to the user's rendering folder, so you can compile his program :
+	```bash
+	gcc -Wall -Werror -Wextra $1/hello/hello.c -o my_exec
+	```
+
 	### *leaks.bash*
 	During the correction, a bash script named `leaks.bash` is copied into the correction folder.
   This script as its name indicates will generate logs of valgrind. This one accepts two arguments minimum: first the executable you want to test, second the identifier of your current test (for example if you make 3 tests, you will be able to generate the log 1, 2 and 3). All other arguments will be passed to your program

@@ -1,36 +1,37 @@
 #include <unistd.h>
 
-int		skip_whitespace(char *str, int i)
-{
-	while (str[i] == ' ' || str[i] == '\t')
-		++i;
-	return i;
+void	ft_putchar(char c) {
+	write(1, &c, 1);
 }
 
-void	epur_str(char *str)
-{
-	int i = 0;
-	int first_word = 1;
-	int len = 0;
+int		ft_is_space(char c) {
+	return ((c == ' ') || (c == '\t'));
+}
 
-	i = skip_whitespace(str, i);
-	while (str[i] != '\0')
+void	ft_epur_str(char *str) {
+	int	flag;
+
+	flag = 0;
+	while (ft_is_space(*str))
+		str++;
+	while (*str)
 	{
-		if (first_word == 0)
-			write(1, " ", 1);
-		while (str[len] != '\0' && str[len] != ' ' && str[len] != '\t')
-			++len;
-		write(1, str + i, len);
-		i = i + len;
-		first_word = 0;
-		i = skip_whitespace(str, i);
+		if (ft_is_space(*str))
+			flag = 1;
+		if (!ft_is_space(*str))
+		{
+			if (flag)
+				ft_putchar(' ');
+			flag = 0;
+			ft_putchar(*str);
+		}
+		str++;
 	}
 }
 
-int		main(int argc, char **argv)
-{
+int		main(int argc, char *argv[]) {
 	if (argc == 2)
-		epur_str(argv[1]);
-	write(1, "\n", 1);
-	return 0;
+		ft_epur_str(argv[1]);
+	ft_putchar('\n');
+	return (0);
 }

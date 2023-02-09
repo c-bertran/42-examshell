@@ -18,7 +18,7 @@ export default {
 					'en_US': 'first_word',
 					'fr_FR': 'first_word'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -34,7 +34,7 @@ export default {
 					'en_US': 'fizzbuzz',
 					'fr_FR': 'fizzbuzz'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -50,7 +50,7 @@ export default {
 					'en_US': 'ft_putstr',
 					'fr_FR': 'ft_putstr'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -66,7 +66,7 @@ export default {
 					'en_US': 'ft_strcpy',
 					'fr_FR': 'ft_strcpy'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -81,7 +81,7 @@ export default {
 					'en_US': 'ft_strlen',
 					'fr_FR': 'ft_strlen'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -96,7 +96,7 @@ export default {
 					'en_US': 'ft_swap',
 					'fr_FR': 'ft_swap'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -111,7 +111,7 @@ export default {
 					'en_US': 'repeat_alpha',
 					'fr_FR': 'repeat_alpha'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -127,7 +127,7 @@ export default {
 					'en_US': 'rev_print',
 					'fr_FR': 'rev_print'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -143,7 +143,7 @@ export default {
 					'en_US': 'rot_13',
 					'fr_FR': 'rot_13'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -159,7 +159,7 @@ export default {
 					'en_US': 'rotone',
 					'fr_FR': 'rotone'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -175,7 +175,7 @@ export default {
 					'en_US': 'search_and_replace',
 					'fr_FR': 'search_and_replace'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -191,7 +191,7 @@ export default {
 					'en_US': 'ulstr',
 					'fr_FR': 'ulstr'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -209,7 +209,7 @@ export default {
 					'en_US': 'alpha_mirror',
 					'fr_FR': 'alpha_mirror'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -225,7 +225,7 @@ export default {
 					'en_US': 'camel_to_snake',
 					'fr_FR': 'camel_to_snake'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -241,7 +241,7 @@ export default {
 					'en_US': 'do_op',
 					'fr_FR': 'do_op'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -257,7 +257,7 @@ export default {
 					'en_US': 'ft_atoi',
 					'fr_FR': 'ft_atoi'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -272,7 +272,7 @@ export default {
 					'en_US': 'ft_strcmp',
 					'fr_FR': 'ft_strcmp'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -287,7 +287,7 @@ export default {
 					'en_US': 'ft_strcspn',
 					'fr_FR': 'ft_strcspn'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -302,7 +302,7 @@ export default {
 					'en_US': 'ft_strdup',
 					'fr_FR': 'ft_strdup'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -318,7 +318,7 @@ export default {
 					'en_US': 'inter',
 					'fr_FR': 'inter'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -334,7 +334,7 @@ export default {
 					'en_US': 'is_power_of_2',
 					'fr_FR': 'is_power_of_2'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -350,7 +350,7 @@ export default {
 					'en_US': 'last_word',
 					'fr_FR': 'last_word'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -366,7 +366,7 @@ export default {
 					'en_US': 'max',
 					'fr_FR': 'max'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -381,7 +381,7 @@ export default {
 					'en_US': 'snake_to_camel',
 					'fr_FR': 'snake_to_camel'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -397,7 +397,7 @@ export default {
 					'en_US': 'swap_bits',
 					'fr_FR': 'swap_bits'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -430,7 +430,7 @@ export default {
 					'en_US': 'add_prime_sum',
 					'fr_FR': 'add_prime_sum'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -446,7 +446,7 @@ export default {
 					'en_US': 'epur_str',
 					'fr_FR': 'epur_str'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -462,7 +462,7 @@ export default {
 					'en_US': 'expand_str',
 					'fr_FR': 'expand_str'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -478,7 +478,7 @@ export default {
 					'en_US': 'ft_atoi_base',
 					'fr_FR': 'ft_atoi_base'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -493,7 +493,7 @@ export default {
 					'en_US': 'ft_list_size',
 					'fr_FR': 'ft_list_size'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -508,7 +508,7 @@ export default {
 					'en_US': 'ft_range',
 					'fr_FR': 'ft_range'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -524,7 +524,7 @@ export default {
 					'en_US': 'ft_rrange',
 					'fr_FR': 'ft_rrange'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -540,7 +540,7 @@ export default {
 					'en_US': 'hidenp',
 					'fr_FR': 'hidenp'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -556,7 +556,7 @@ export default {
 					'en_US': 'lcm',
 					'fr_FR': 'lcm'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -571,7 +571,7 @@ export default {
 					'en_US': 'paramsum',
 					'fr_FR': 'paramsum'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -587,7 +587,7 @@ export default {
 					'en_US': 'pgcd',
 					'fr_FR': 'pgcd'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -603,7 +603,7 @@ export default {
 					'en_US': 'print_hex',
 					'fr_FR': 'print_hex'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -619,7 +619,7 @@ export default {
 					'en_US': 'rstr_capitalizer',
 					'fr_FR': 'rstr_capitalizer'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -635,7 +635,7 @@ export default {
 					'en_US': 'str_capitalizer',
 					'fr_FR': 'str_capitalizer'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -651,7 +651,7 @@ export default {
 					'en_US': 'tab_mult',
 					'fr_FR': 'tab_mult'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -669,7 +669,7 @@ export default {
 					'en_US': 'flood_fill',
 					'fr_FR': 'flood_fill'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -685,7 +685,7 @@ export default {
 					'en_US': 'fprime',
 					'fr_FR': 'fprime'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -701,7 +701,7 @@ export default {
 					'en_US': 'ft_itoa',
 					'fr_FR': 'ft_itoa'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -717,7 +717,7 @@ export default {
 					'en_US': 'ft_split',
 					'fr_FR': 'ft_split'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -733,7 +733,7 @@ export default {
 					'en_US': 'rev_wstr',
 					'fr_FR': 'rev_wstr'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -749,7 +749,7 @@ export default {
 					'en_US': 'rostring',
 					'fr_FR': 'rostring'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -765,7 +765,7 @@ export default {
 					'en_US': 'sort_list',
 					'fr_FR': 'sort_list'
 				},
-				exponent: 4,
+				exponent: 5,
 				trace: false,
 				moulinette: true,
 				leaks: true,
@@ -774,6 +774,105 @@ export default {
 					check: ['list.h', 'sort_list.c', 'main.c']
 				}
 			}
+		],
+		[
+			{
+				id: 'brackets',
+				dir: 'part_4',
+				name: {
+					'en_US': 'brackets',
+					'fr_FR': 'brackets'
+				},
+				exponent: 5,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'brainfuck',
+				dir: 'part_4',
+				name: {
+					'en_US': 'brainfuck',
+					'fr_FR': 'brainfuck'
+				},
+				exponent: 5,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write', 'malloc', 'free'],
+				copy: {
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'checkmate',
+				dir: 'part_4',
+				name: {
+					'en_US': 'checkmate',
+					'fr_FR': 'checkmate'
+				},
+				exponent: 5,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write', 'malloc', 'free'],
+				copy: {
+					user: ['examples.txt'],
+					check: ['main.c']
+				}
+			},
+			{
+				id: 'ft_itoa_base',
+				dir: 'part_4',
+				name: {
+					'en_US': 'ft_itoa_base',
+					'fr_FR': 'ft_itoa_base'
+				},
+				exponent: 5,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['malloc'],
+				copy: {
+					check: ['ft_itoa_base.c', 'main.c']
+				}
+			},
+			{
+				id: 'print_memory',
+				dir: 'part_4',
+				name: {
+					'en_US': 'print_memory',
+					'fr_FR': 'print_memory'
+				},
+				exponent: 5,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write'],
+				copy: {
+					check: ['print_memory.c', 'main.c']
+				}
+			},
+			{
+				id: 'str_maxlenoc',
+				dir: 'part_4',
+				name: {
+					'en_US': 'str_maxlenoc',
+					'fr_FR': 'str_maxlenoc'
+				},
+				exponent: 5,
+				trace: false,
+				moulinette: true,
+				leaks: true,
+				allowed_functions: ['write', 'malloc', 'free'],
+				copy: {
+					check: ['main.c']
+				}
+			},
 		]
 	]
 } as examDefinition;

@@ -1,6 +1,6 @@
 #include <unistd.h>
 
-int ft_putstr(char *str) {
+void ft_putstr(char *str) {
 	int i = 0;
 
 	while (str[i] != '\0')
