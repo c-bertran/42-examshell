@@ -338,7 +338,6 @@ export default {
 				trace: false,
 				moulinette: true,
 				leaks: true,
-				allowed_functions: ['write'],
 				copy: {
 					check: ['is_power_of_2.c', 'main.c']
 				}
@@ -418,7 +417,7 @@ export default {
 				moulinette: true,
 				leaks: true,
 				copy: {
-					check: ['union.c']
+					check: ['main.c']
 				}
 			}
 		],
@@ -673,7 +672,6 @@ export default {
 				trace: false,
 				moulinette: true,
 				leaks: true,
-				allowed_functions: ['write'],
 				copy: {
 					check: ['flood_fill.c', 'main.c']
 				}

@@ -98,7 +98,7 @@ export default class {
 					]
 				},
 				{
-					type: 'select',
+					type: 'autocomplete',
 					name: 'exam',
 					message: i18n('select.question', this.options.lang) as string,
 					choices: __exams.map((e) => ({ title: e.name[this.options.lang], value: e.id }))

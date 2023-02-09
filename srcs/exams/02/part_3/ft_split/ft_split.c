@@ -1,91 +1,72 @@
 #include <stdlib.h>
 
-static char		**ft_malloc_error(char **tab)
+int	ft_wordlen(char *str)
 {
-	unsigned int	i;
+	int i = 0;
 
-	i = 0;
-	while (tab[i])
-	{
-		if (tab[i])
-		{
-			free(tab[i]);
-			i++;
-		}
-	}
-	free(tab);
-	return (NULL);
+	while (str[i] != '\0' && str[i] != ' ' && str[i] != '\t' && str[i] != '\n')
+		++i;
+	return (i);
 }
 
-unsigned int	ft_get_nb_strs(char const *s, char c)
+char	*word_dupe(char *str)
 {
-	unsigned int	i;
-	unsigned int	nb_strs;
-
-	if (s == NULL || !c || s[0] == '\0' || c == '\0')
-		return (0);
-	if (!s[0])
-		return (0);
-	i = 0;
-	nb_strs = 0;
-	while (s[i] && s[i] == c)
-		i++;
-	while (s[i])
+	int i = 0;
+	int len = ft_wordlen(str);
+	char *word = malloc(sizeof(char) * (len + 1));
+	
+	word[len] = '\0';
+	while (i < len)
 	{
-		if (s[i] == c)
-		{
-			nb_strs++;
-			while (s[i] && s[i] == c)
-				i++;
-			continue ;
-		}
-		i++;
+		word[i] = str[i];
+		++i;
 	}
-	if (s[i - 1] != c)
-		nb_strs++;
-	return (nb_strs);
+	return (word);
 }
 
-void			ft_get_next_str(char **next_str, unsigned int *next_str_len, char c)
+void	fill_words(char **array, char *str)
 {
-	unsigned int	i;
-
-	*next_str += *next_str_len;
-	*next_str_len = 0;
-	i = 0;
-	while (**next_str && **next_str == c)
-		(*next_str)++;
-	while ((*next_str)[i])
+	int word_index = 0;
+	
+	while (*str == ' ' || *str == '\t' || *str == '\n')
+		++str;
+	while (*str != '\0')
 	{
-		if ((*next_str)[i] == c)
-			return ;
-		(*next_str_len)++;
-		i++;
+		array[word_index] = word_dupe(str);
+		++word_index;
+		while (*str != '\0' && *str != ' ' && *str != '\t' && *str != '\n')
+			++str;
+		while (*str == ' ' || *str == '\t' || *str == '\n')
+			++str;
 	}
 }
 
-char			**ft_split(char const *s, char c)
+int		count_words(char *str)
 {
-	char			**tab;
-	char			*next_str;
-	unsigned int	next_str_len;
-	unsigned int	nb_strs;
-	unsigned int	i;
-
-	nb_strs = ft_get_nb_strs(s, c);
-	if (!(tab = malloc(sizeof(char *) * (nb_strs + 1))))
-		return (NULL);
-	i = 0;
-	next_str = (char *)s;
-	next_str_len = 0;
-	while (i < nb_strs)
+	int num_words = 0;
+	
+	while (*str == ' ' || *str == '\t' || *str == '\n')
+		++str;
+	while (*str != '\0')
 	{
-		ft_get_next_str(&next_str, &next_str_len, c);
-		if (!(tab[i] = malloc(sizeof(char) * (next_str_len + 1))))
-			return (ft_malloc_error(tab));
-		ft_strlcpy(tab[i], next_str, next_str_len + 1);
-		i++;
+		++num_words;
+		while (*str != '\0' && *str != ' ' && *str != '\t' && *str != '\n')
+			++str;
+		while (*str == ' ' || *str == '\t' || *str == '\n')
+			++str;
 	}
-	tab[i] = NULL;
-	return (tab);
+	return (num_words);
+}
+
+char	**ft_split(char *str)
+{
+	int		num_words;
+	char	**array;
+	
+	num_words = count_words(str);
+	array = malloc(sizeof(char *) * (num_words + 1));
+	
+	array[num_words] = 0;
+	fill_words(array, str);
+	return (array);
 }
