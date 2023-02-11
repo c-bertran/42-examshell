@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra main.c -o hidenp;
 ./hidenp > real
@@ -18,6 +17,6 @@ clang -Wall -Werror -Wextra $1/hidenp/hidenp.c -o hidenp2;
 ./hidenp2 "               cette phrase ne cache rien" "   ce"  >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash hidenp2 0 "fgex.;" "tyf34gdgf;'ektufjhgdgex.;.;rtjynur6" >/dev/null 2>&1
+bash leaks.bash hidenp2 0 "fgex.;" "tyf34gdgf;'ektufjhgdgex.;.;rtjynur6" > /dev/null 2>&1
 
 rm -rf hidenp hidenp2 real fake

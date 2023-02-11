@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra flood_fill.c main.c -o floodFill;
 ./floodFill 4 4 44 > real
@@ -8,7 +7,7 @@ clang -Wall -Werror -Wextra flood_fill.c main.c -o floodFill;
 ./floodFill 12 4 788 >> real
 ./floodFill 42 54 98756 >> real
 
-clang -Wall -Werror -Wextra $1/flood_fill/flood_fill.c $1/flood_fill/main.c -o floodFill2;
+clang -Wall -Werror -Wextra $1/flood_fill/flood_fill.c main.c -o floodFill2;
 ./floodFill2 4 4 44 > fake
 ./floodFill2 8 8 6 >> fake
 ./floodFill2 6 6 75 >> fake
@@ -16,6 +15,6 @@ clang -Wall -Werror -Wextra $1/flood_fill/flood_fill.c $1/flood_fill/main.c -o f
 ./floodFill2 42 54 98756 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash floodFill2 0 8 8 6 >/dev/null 2>&1
+bash leaks.bash floodFill2 0 8 8 6 > /dev/null 2>&1
 
 rm -rf floodFill floodFill2 real fake

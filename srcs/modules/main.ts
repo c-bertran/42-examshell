@@ -1,7 +1,7 @@
 import { exit, stdin, stdout } from 'process';
 import { createInterface } from 'readline';
 import prompts from 'prompts';
-import commands from 'commands/index';
+import commands, { initCommands, getCommandsList } from 'commands/index';
 import exams from 'exams/index';
 import examList from 'exams/exams';
 import i18n, { lang, langList } from 'langs/index';
@@ -73,7 +73,7 @@ export default class {
 				for (const exam of __exams) {
 					if (exam.id === getConfig().exam) {
 						this.examInstance = new exams(getConfig().exam as string, this.options);
-						this.clockInstance = new clock(exam.time);
+						this.clockInstance = new clock(exam.time, this.options.infinite);
 						this.examInstance.init();
 						return res();
 					}
@@ -117,7 +117,7 @@ export default class {
 					for (const exam of __exams) {
 						if (exam.id === answer.exam) {
 							this.examInstance = new exams(answer.exam, this.options);
-							this.clockInstance = new clock(exam.time);
+							this.clockInstance = new clock(exam.time, this.options.infinite);
 							this.examInstance.init();
 							break;
 						}
@@ -148,6 +148,8 @@ export default class {
 	}
 
 	manageClock(): void {
+		if (this.options.infinite)
+			return;
 		this.clockInstance?.start();
 		this.clockInstance?.on('stop', () => {
 			this.prompt?.write(null, { ctrl: true, name: 'u' });
@@ -162,6 +164,7 @@ export default class {
 			exit(0);
 		};
 
+		initCommands();
 		this.prompt = createInterface({
 			input: stdin,
 			output: stdout,
@@ -169,11 +172,10 @@ export default class {
 			terminal: true,
 			tabSize: 2,
 			completer: (line: string) => {
-				const commandsList = ['finish', 'grademe', 'help', 'status'];
-				const hits = commandsList.filter((c) => c.startsWith(line));
+				const hits = getCommandsList().filter((c) => c.startsWith(line));
 				return [hits.length
 					? hits
-					: commandsList, line];
+					: getCommandsList(), line];
 			},
 		})
 			.on('line', async (line: string) => {

@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra main.c -o tabMult;
 ./tabMult > real
@@ -24,6 +23,6 @@ clang -Wall -Werror -Wextra $1/tab_mult/tab_mult.c -o tabMult2;
 ./tabMult2 2734 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash tabMult2 0 79 >/dev/null 2>&1
+bash leaks.bash tabMult2 0 79 > /dev/null 2>&1
 
 rm -rf tabMult tabMult2 real fake

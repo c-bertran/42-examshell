@@ -1,3 +1,5 @@
+#!/bin/bash
+
 declare -i USER_PORT=0
 declare -i CHECKER_PORT=0
 declare -i I=1
@@ -24,7 +26,7 @@ start_serv () {
 		echo "Failed starting user serv"
 		exit -1
 	fi
-	./fake_serv $USER_PORT >/dev/null 2>&1 &
+	./fake_serv $USER_PORT > /dev/null 2>&1 &
 
 	CHECKER_PORT=$( ./port_checker )
 	if [ $CHECKER_PORT -eq -1 ]
@@ -32,7 +34,7 @@ start_serv () {
 		echo "Failed starting real serv"
 		exit -1
 	fi
-	./real_serv $CHECKER_PORT >/dev/null 2>&1 &
+	./real_serv $CHECKER_PORT > /dev/null 2>&1 &
 	./main_client $USER_PORT >> fake &
 	./main_client $CHECKER_PORT >> real &
 	echo "Test $I >>>> $CLIENTS client(s)" | tee -a fake | tee -a real
@@ -96,8 +98,8 @@ check_leak() {
 		exit -1
 	fi
 
-	./fake_serv $TEMP_PORT >/dev/null 2>&1 &
-	bash leaks.bash main_client $I $TEMP_PORT >/dev/null 2>&1 &
+	./fake_serv $TEMP_PORT > /dev/null 2>&1 &
+	bash leaks.bash main_client $I $TEMP_PORT > /dev/null 2>&1 &
 	sleep 4
 	./messages 42 | ./client $TEMP_PORT >/dev/null &
 	PID_TEST=$!

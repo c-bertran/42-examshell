@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra main.c -o expandStr;
 ./expandStr > real
@@ -18,6 +17,6 @@ clang -Wall -Werror -Wextra $1/expand_str/expand_str.c -o expandStr2;
 ./expandStr2 "       paqe fwtdjetyi	ytjn 			ytjoeyjne 		 jeyj	  	 " >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash expandStr2 0 "            cette phrase ne cache rien              " >/dev/null 2>&1
+bash leaks.bash expandStr2 0 "            cette phrase ne cache rien              " > /dev/null 2>&1
 
 rm -rf expandStr expandStr2 real fake

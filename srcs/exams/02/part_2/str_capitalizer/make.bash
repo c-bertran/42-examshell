@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra main.c -o strCapitalizer;
 ./strCapitalizer > real
@@ -14,6 +13,6 @@ clang -Wall -Werror -Wextra $1/str_capitalizer/str_capitalizer.c -o strCapitaliz
 ./strCapitalizer2 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" "               cette phrase ne cache rien" >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash strCapitalizer2 0 "SecONd teST A LITtle BiT   Moar comPLEX" "   But... This iS not THAT COMPLEX" "     Okay, this is the last 1239809147801 but not    the least    t" >/dev/null 2>&1
+bash leaks.bash strCapitalizer2 0 "SecONd teST A LITtle BiT   Moar comPLEX" "   But... This iS not THAT COMPLEX" "     Okay, this is the last 1239809147801 but not    the least    t" > /dev/null 2>&1
 
 rm -rf strCapitalizer strCapitalizer2 real fake

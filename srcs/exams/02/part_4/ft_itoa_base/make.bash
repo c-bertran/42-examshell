@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra ft_itoa_base.c main.c -o itoaBase
 ./itoaBase "hello world" > real
@@ -21,7 +20,7 @@ clang -Wall -Werror -Wextra ft_itoa_base.c main.c -o itoaBase
 ./itoaBase -128 >> real
 ./itoaBase -16 >> real
 
-clang -Wall -Werror -Wextra $1/ft_itoa_base/ft_itoa_base.c $1/ft_itoa_base/main.c -o itoaBase2
+clang -Wall -Werror -Wextra $1/ft_itoa_base/ft_itoa_base.c main.c -o itoaBase2
 ./itoaBase2 "hello world" > fake
 ./itoaBase2 "" >> fake
 ./itoaBase2 "    " >> fake
@@ -42,6 +41,6 @@ clang -Wall -Werror -Wextra $1/ft_itoa_base/ft_itoa_base.c $1/ft_itoa_base/main.
 ./itoaBase2 -16 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash itoaBase2 0 131072 >/dev/null 2>&1
+bash leaks.bash itoaBase2 0 131072 > /dev/null 2>&1
 
 rm -rf itoaBase itoaBase2 real fake

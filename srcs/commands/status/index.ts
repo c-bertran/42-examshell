@@ -9,9 +9,9 @@ export default {
 		'en_US': 'Print status of current examen',
 		'fr_FR': 'Imprimer le statut de l\'examen en cours'
 	},
-	exec: async (_command, _lang, exam: exams, clock?: clock) => {
+	exec: async (_command, _lang, exam: exams, clock: clock) => {
 		exam.info();
-		if (clock) {
+		if (!clock.isInfinite) {
 			console.log('╓───────────────────╖');
 			console.log('║        ⏰         ║');
 			console.log(`║      ${format.foreground.normal.green}${clock.time.days.toString().padStart(2, '0')}${format.format.reset} days      ║`);

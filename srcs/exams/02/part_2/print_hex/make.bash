@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra main.c -o printHex;
 ./printHex > real
@@ -16,6 +15,6 @@ clang -Wall -Werror -Wextra $1/print_hex/print_hex.c -o printHex2;
 ./printHex2 54245 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash printHex2 0 12 >/dev/null 2>&1
+bash leaks.bash printHex2 0 12 > /dev/null 2>&1
 
 rm -rf printHex printHex2 real fake

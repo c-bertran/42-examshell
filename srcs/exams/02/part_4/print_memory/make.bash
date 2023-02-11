@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra print_memory.c main.c -o printMemory
 ./printMemory 0 > real
@@ -8,7 +7,7 @@ clang -Wall -Werror -Wextra print_memory.c main.c -o printMemory
 ./printMemory 417526 >> real
 ./printMemory 71626548 >> real
 
-clang -Wall -Werror -Wextra $1/print_memory/print_memory.c $1/print_memory/main.c -o printMemory2
+clang -Wall -Werror -Wextra $1/print_memory/print_memory.c main.c -o printMemory2
 ./printMemory 0 > fake
 ./printMemory 42 >> fake
 ./printMemory 4624 >> fake

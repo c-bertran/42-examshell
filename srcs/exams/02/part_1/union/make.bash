@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra main.c -o union || exit 100;
 ./union zpadinton "paqefwtdjetyiytjneytjoeyjnejeyj" > real
@@ -18,6 +17,6 @@ clang -Wall -Werror -Wextra $1/union/union.c -o union2
 ./union2 one two three >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash union2 0 ddf6vewg64f gtwthgdwthdwfteewhrtag6h4ffdhsd >/dev/null 2>&1
+bash leaks.bash union2 0 ddf6vewg64f gtwthgdwthdwfteewhrtag6h4ffdhsd > /dev/null 2>&1
 
 rm -rf union union2 real fake

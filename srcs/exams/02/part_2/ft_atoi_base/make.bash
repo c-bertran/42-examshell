@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra ft_atoi_base.c main.c -o atoiBase;
 ./atoiBase > real
@@ -12,7 +11,7 @@ clang -Wall -Werror -Wextra ft_atoi_base.c main.c -o atoiBase;
 ./atoiBase "cette phrase ne cache rien              " 6 >> real
 ./atoiBase "       paqe fwtdjetyi	ytjn 			ytjoeyjne 		 jeyj" 13 >> real
 
-clang -Wall -Werror -Wextra $1/ft_atoi_base/ft_atoi_base.c $1/ft_atoi_base/main.c -o atoiBase2;
+clang -Wall -Werror -Wextra $1/ft_atoi_base/ft_atoi_base.c main.c -o atoiBase2;
 ./atoiBase2 > fake
 ./atoiBase2 one two >> fake
 ./atoiBase2 42 >> fake
@@ -24,6 +23,6 @@ clang -Wall -Werror -Wextra $1/ft_atoi_base/ft_atoi_base.c $1/ft_atoi_base/main.
 ./atoiBase2 "       paqe fwtdjetyi	ytjn 			ytjoeyjne 		 jeyj" 13 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash atoiBase2 0 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" 2 >/dev/null 2>&1
+bash leaks.bash atoiBase2 0 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" 2 > /dev/null 2>&1
 
 rm -rf atoiBase atoiBase2 real fake

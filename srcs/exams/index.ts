@@ -282,7 +282,12 @@ export default class {
 				shell: '/bin/bash',
 				windowsHide: true,
 				timeout: 120000 // 2min
-			}, (err, _stdout, stderr) => {
+			}, (err, stdout, stderr) => {
+
+				console.log('1', err);
+				console.log('2', stdout);
+				console.log('3', stderr);
+
 				if (err || stderr.length) {
 					if (err && err.code === 100)
 						rej({ data: err });

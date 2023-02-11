@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra ft_atoi.c main.c -o ftAtoi;
 ./ftAtoi "hello world" > real
@@ -22,7 +21,7 @@ clang -Wall -Werror -Wextra ft_atoi.c main.c -o ftAtoi;
 ./ftAtoi -16 >> real
 ./ftAtoi -8 >> real
 
-clang -Wall -Werror -Wextra $1/ft_atoi/ft_atoi.c $1/ft_atoi/main.c -o ftAtoi2;
+clang -Wall -Werror -Wextra $1/ft_atoi/ft_atoi.c main.c -o ftAtoi2;
 ./ftAtoi2 "hello world" > real
 ./ftAtoi2 "" >> real
 ./ftAtoi2 "    " >> real
@@ -44,6 +43,6 @@ clang -Wall -Werror -Wextra $1/ft_atoi/ft_atoi.c $1/ft_atoi/main.c -o ftAtoi2;
 ./ftAtoi2 -8 >> real
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash ftAtoi2 0 131072 >/dev/null 2>&1
+bash leaks.bash ftAtoi2 0 131072 > /dev/null 2>&1
 
 rm -rf ftAtoi ftAtoi2 real fake

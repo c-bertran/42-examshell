@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra ft_swap.c main.c -o ft_swap;
 ./ft_swap 5 10 > real
@@ -7,13 +6,13 @@ clang -Wall -Werror -Wextra ft_swap.c main.c -o ft_swap;
 ./ft_swap 24 42 >> real
 ./ft_swap 789 3471365 >> real
 
-clang -Wall -Werror -Wextra $1/ft_swap/ft_swap.c $1/ft_swap/main.c -o ft_swap2;
+clang -Wall -Werror -Wextra $1/ft_swap/ft_swap.c main.c -o ft_swap2;
 ./ft_swap2 5 10 > fake
 ./ft_swap2 25 785 >> fake
 ./ft_swap2 24 42 >> fake
 ./ft_swap2 789 3471365 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash ft_swap2 0 5 10 >/dev/null 2>&1
+bash leaks.bash ft_swap2 0 5 10 > /dev/null 2>&1
 
 rm -rf ft_swap ft_swap2 real fake

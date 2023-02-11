@@ -100,6 +100,7 @@ class iddqd {
 let childServe: iddqd | undefined = undefined;
 export default {
 	name: 'iddqd',
+	hide: true,
 	description: {
 		'en_US': 'A wonderful easter egg',
 		'fr_FR': 'Un superbe easter egg'

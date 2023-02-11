@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra ft_list_size.c main.c -o listSize;
 ./listSize 1 > real
@@ -7,13 +6,13 @@ clang -Wall -Werror -Wextra ft_list_size.c main.c -o listSize;
 ./listSize 7 >> real
 ./listSize 42 >> real
 
-clang -Wall -Werror -Wextra $1/ft_list_size/ft_list_size.c $1/ft_list_size/main.c -o listSize2;
+clang -Wall -Werror -Wextra $1/ft_list_size/ft_list_size.c main.c -o listSize2;
 ./listSize2 1 > fake
 ./listSize2 5 >> fake
 ./listSize2 7 >> fake
 ./listSize2 42 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash listSize2 0 7 >/dev/null 2>&1
+bash leaks.bash listSize2 0 7 > /dev/null 2>&1
 
 rm -rf listSize listSize2 real fake

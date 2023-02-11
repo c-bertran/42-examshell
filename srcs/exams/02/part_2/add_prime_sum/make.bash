@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra main.c -o addPrimeSub;
 ./addPrimeSub > real
@@ -20,6 +19,6 @@ clang -Wall -Werror -Wextra $1/add_prime_sub/add_prime_sub.c -o addPrimeSub2;
 ./addPrimeSub2 404 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash addPrimeSub2 0 78 >/dev/null 2>&1
+bash leaks.bash addPrimeSub2 0 78 > /dev/null 2>&1
 
 rm -rf addPrimeSub addPrimeSub2 real fake

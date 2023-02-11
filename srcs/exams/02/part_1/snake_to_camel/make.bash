@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra main.c -o snakeToCamel;
 ./snakeToCamel "hello_world_and_plip" > real
@@ -18,6 +17,6 @@ clang -Wall -Werror -Wextra $1/snake_to_camel/snake_to_camel.c -o snakeToCamel2;
 ./snakeToCamel2 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash snakeToCamel2 0 "helloWorldAndCoucou" >/dev/null 2>&1
+bash leaks.bash snakeToCamel2 0 "helloWorldAndCoucou" > /dev/null 2>&1
 
 rm -rf snakeToCamel snakeToCamel2 real fake

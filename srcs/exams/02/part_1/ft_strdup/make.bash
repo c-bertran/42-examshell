@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra ft_strdup.c main.c -o ftStrdup;
 ./ftStrdup "hello world" > real
@@ -9,7 +8,7 @@ clang -Wall -Werror -Wextra ft_strdup.c main.c -o ftStrdup;
 ./ftStrdup "behavior" >> real
 ./ftStrdup "  wou    wah   wi" >> real
 
-clang -Wall -Werror -Wextra $1/ft_strdup/ft_strdup.c $1/ft_strdup/main.c -o ftStrdup2;
+clang -Wall -Werror -Wextra $1/ft_strdup/ft_strdup.c main.c -o ftStrdup2;
 ./ftStrdup2 "hello world" > fake
 ./ftStrdup2 "" >> fake
 ./ftStrdup2 "wonderful" >> fake
@@ -18,6 +17,6 @@ clang -Wall -Werror -Wextra $1/ft_strdup/ft_strdup.c $1/ft_strdup/main.c -o ftSt
 ./ftStrdup2 "  wou    wah   wi" >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash ftStrdup2 0 "wondertime" >/dev/null 2>&1
+bash leaks.bash ftStrdup2 0 "wondertime" > /dev/null 2>&1
 
 rm -rf ftStrdup ftStrdup2 real fake

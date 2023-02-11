@@ -20,6 +20,7 @@ interface fuzzy {
 
 class parse {
 	public commands: command[];
+	public commandsList: string[];
 	public fuzzyCommands: fuzzy[];
 	
 	constructor() {
@@ -30,6 +31,11 @@ class parse {
 			iddqd,
 			status
 		];
+		this.commandsList = this.commands.reduce((acc: string[], cur) => {
+			if (!cur.hide)
+				return [ ...acc, cur.name ];
+			return acc;
+		}, []);
 		this.fuzzyCommands = this.commands.map((e) => ({
 			name: e.name,
 			ratio: 0.0,
@@ -88,6 +94,17 @@ class parse {
 	}
 }
 let instance: parse | undefined = undefined;
+
+export const initCommands = (): void => {
+	instance = new parse();
+};
+
+export const getCommandsList = (): string[] => {
+	if (!instance)
+		return [];
+	return instance.commandsList;
+};
+
 export default async (line: string, lang: lang, exams: exams, clock: clock): Promise<void> => {
 	if (!instance)
 		instance = new parse();
@@ -106,7 +123,7 @@ export default async (line: string, lang: lang, exams: exams, clock: clock): Pro
 	else {
 		const print = [];
 		for (const key in instance.commands) {
-			if (!instance.commands[key].hide && instance.fuzzyCommands[key].ratio >= 0.4) {
+			if (instance.fuzzyCommands[key].ratio >= 0.4) {
 				print.push({
 					command: instance.commands[key].name,
 					description: instance.commands[key].description[lang]

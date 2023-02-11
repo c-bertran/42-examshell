@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 rm -rf fake real real_gnl fake_gnl
 

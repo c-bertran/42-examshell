@@ -10,6 +10,7 @@ interface time {
 
 export default class extends EventEmitter {
 	public time: time;
+	public isInfinite: boolean;
 	private interval: undefined | NodeJS.Timer;
 
 	/**
@@ -18,7 +19,7 @@ export default class extends EventEmitter {
 	 * Exemple: `3d 14h 41m 17s`
 	 * @param {time} time String containing time information
 	 */
-	constructor(time: string) {
+	constructor(time: string, isInfinite: boolean) {
 		super();
 		const reg = /(?<days>\d*)d|(?<hours>\d*)h|(?<minutes>\d*)m|(?<seconds>\d*)s/gm;
 		const matchs = Array.from(time.matchAll(reg), (m) => (
@@ -31,6 +32,7 @@ export default class extends EventEmitter {
 		));
 		
 		this.time = { days: 0, hours: 0, minutes: 0, seconds: 0, total: 0 };
+		this.isInfinite = isInfinite;
 		this.interval = undefined;
 		for (const obj of matchs) {
 			if (!Number.isNaN(obj.days))

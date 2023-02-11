@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra main.c -o rev_print;
 ./rev_print > real
@@ -18,6 +17,6 @@ clang -Wall -Werror -Wextra $1/rev_print/rev_print.c -o rev_print2;
 ./rev_print2 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash rev_print2 0 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" >/dev/null 2>&1
+bash leaks.bash rev_print2 0 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" > /dev/null 2>&1
 
 rm -rf rev_print rev_print2 real fake

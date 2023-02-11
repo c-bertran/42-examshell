@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra main.c -o rstrCapitalizer;
 ./rstrCapitalizer > real
@@ -14,6 +13,6 @@ clang -Wall -Werror -Wextra $1/rstr_capitalizer/rstr_capitalizer.c -o rstrCapita
 ./rstrCapitalizer2 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" "               cette phrase ne cache rien" >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash rstrCapitalizer2 0 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" "               cette phrase ne cache rien" >/dev/null 2>&1
+bash leaks.bash rstrCapitalizer2 0 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" "               cette phrase ne cache rien" > /dev/null 2>&1
 
 rm -rf rstrCapitalizer rstrCapitalizer2 real fake

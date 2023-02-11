@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 clang -Wall -Werror -Wextra main.c -o roString;
 ./roString "paqe      fwtdjetyi    ytjn    eytjoeyjne jeyj" > real
@@ -18,6 +17,6 @@ clang -Wall -Werror -Wextra $1/rostring/rostring.c -o roString2;
 ./roString2 one two >> real
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash roString2 0 "cette phrase!  !  ne! ca   c he rien" >/dev/null 2>&1
+bash leaks.bash roString2 0 "cette phrase!  !  ne! ca   c he rien" > /dev/null 2>&1
 
 rm -rf roString roString2 real fake
