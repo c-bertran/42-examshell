@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o fPrime;
+clang -Wall -Werror -Wextra main.c -o fPrime || exit 100
 ./fPrime > real
 ./fPrime one two >> real
 ./fPrime 0 >> real
@@ -13,7 +13,7 @@ clang -Wall -Werror -Wextra main.c -o fPrime;
 ./fPrime 2879456 >> real
 ./fPrime -67 >> real
 
-clang -Wall -Werror -Wextra $1/fprime/fprime.c -o fPrime2;
+clang -Wall -Werror -Wextra $1/fprime/fprime.c -o fPrime2
 ./fPrime2 > fake
 ./fPrime2 one two >> fake
 ./fPrime2 0 >> fake

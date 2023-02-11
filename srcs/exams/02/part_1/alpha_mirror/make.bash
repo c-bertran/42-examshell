@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o alphaMirror;
+clang -Wall -Werror -Wextra main.c -o alphaMirror || exit 100
 ./alphaMirror "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" > real
 ./alphaMirror "Cette PhraSe Ne cAChe Rien" >> real
 ./alphaMirror "               cette phrase ne cache rien" >> real
@@ -8,7 +8,7 @@ clang -Wall -Werror -Wextra main.c -o alphaMirror;
 ./alphaMirror one two >> real
 ./alphaMirror >> real
 
-clang -Wall -Werror -Wextra $1/alpha_mirror/alpha_mirror.c -o alphaMirror2;
+clang -Wall -Werror -Wextra $1/alpha_mirror/alpha_mirror.c -o alphaMirror2
 ./alphaMirror2 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" > fake
 ./alphaMirror2 "Cette PhraSe Ne cAChe Rien" >> fake
 ./alphaMirror2 "               cette phrase ne cache rien" >> fake

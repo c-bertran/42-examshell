@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra ft_itoa.c main.c -o ftItoa;
+clang -Wall -Werror -Wextra ft_itoa.c main.c -o ftItoa || exit 100
 ./ftItoa 44 > real
 ./ftItoa 0 >> real
 ./ftItoa 8 >> real
@@ -10,7 +10,7 @@ clang -Wall -Werror -Wextra ft_itoa.c main.c -o ftItoa;
 ./ftItoa -2000000000 >> real
 ./ftItoa -71496154 >> real
 
-clang -Wall -Werror -Wextra $1/ft_itoa/ft_itoa.c main.c -o ftItoa2;
+clang -Wall -Werror -Wextra $1/ft_itoa/ft_itoa.c main.c -o ftItoa2
 ./ftItoa2 44 > fake
 ./ftItoa2 0 >> fake
 ./ftItoa2 8 >> fake

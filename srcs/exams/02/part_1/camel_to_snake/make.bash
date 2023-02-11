@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o camelToSnake;
+clang -Wall -Werror -Wextra main.c -o camelToSnake || exit 100
 ./camelToSnake "helloWorldAndPlip" > real
 ./camelToSnake "hello_world_and_coucou" >> real
 ./camelToSnake "WonderFulWorld" >> real
@@ -8,7 +8,7 @@ clang -Wall -Werror -Wextra main.c -o camelToSnake;
 ./camelToSnake one two >> real
 ./camelToSnake >> real
 
-clang -Wall -Werror -Wextra $1/camel_to_snake/camel_to_snake.c -o camelToSnake2;
+clang -Wall -Werror -Wextra $1/camel_to_snake/camel_to_snake.c -o camelToSnake2
 ./camelToSnake2 "helloWorldAndPlip" > fake
 ./camelToSnake2 "hello_world_and_coucou" >> fake
 ./camelToSnake2 "WonderFulWorld" >> fake

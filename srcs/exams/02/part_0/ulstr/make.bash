@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o ulstr;
+clang -Wall -Werror -Wextra main.c -o ulstr || exit 100
 ./ulstr > real
 ./ulstr "aBc" >> real
 ./ulstr "abc" "abc" >> real
@@ -8,7 +8,7 @@ clang -Wall -Werror -Wextra main.c -o ulstr;
 ./ulstr "fwTDjEtYi" >> real
 ./ulstr "pAQe fwTDJetyi   YTJN    eyTjOEyJne  jEYj" >> real
 
-clang -Wall -Werror -Wextra $1/ulstr/ulstr.c -o ulstr2;
+clang -Wall -Werror -Wextra $1/ulstr/ulstr.c -o ulstr2
 ./ulstr2 > fake
 ./ulstr2 "aBc" >> fake
 ./ulstr2 "abc" "abc" >> fake

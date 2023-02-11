@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o brackets
+clang -Wall -Werror -Wextra main.c -o brackets || exit 100
 ./brackets > real
 ./brackets "[hello]" >> real
 ./brackets "{[1 + 2]}(([-1]))" >> real

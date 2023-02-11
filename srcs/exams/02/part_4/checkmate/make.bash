@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o checkmate
+clang -Wall -Werror -Wextra main.c -o checkmate || exit 100
 ./checkmate > real
 ./checkmate one >> real
 ./checkmate "R..." "..P." "...." "K..." >> real

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o rev_print;
+clang -Wall -Werror -Wextra main.c -o rev_print || exit 100
 ./rev_print > real
 ./rev_print "abc" >> real
 ./rev_print "abc" "abc" >> real
@@ -8,7 +8,7 @@ clang -Wall -Werror -Wextra main.c -o rev_print;
 ./rev_print "fwtdjetyi" >> real
 ./rev_print "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" >> real
 
-clang -Wall -Werror -Wextra $1/rev_print/rev_print.c -o rev_print2;
+clang -Wall -Werror -Wextra $1/rev_print/rev_print.c -o rev_print2
 ./rev_print2 > fake
 ./rev_print2 "abc" >> fake
 ./rev_print2 "abc" "abc" >> fake

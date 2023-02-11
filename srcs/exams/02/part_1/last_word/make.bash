@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o lastWord;
+clang -Wall -Werror -Wextra main.c -o lastWord || exit 100
 ./lastWord "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" > real
 ./lastWord "cette phrase ne cache rien" >> real
 ./lastWord "               cette phrase ne cache rien" >> real
@@ -8,7 +8,7 @@ clang -Wall -Werror -Wextra main.c -o lastWord;
 ./lastWord one two >> real
 ./lastWord >> real
 
-clang -Wall -Werror -Wextra $1/last_word/last_word.c -o lastWord2;
+clang -Wall -Werror -Wextra $1/last_word/last_word.c -o lastWord2
 ./lastWord2 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" > fake
 ./lastWord2 "cette phrase ne cache rien" >> fake
 ./lastWord2 "               cette phrase ne cache rien" >> fake

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o revWstr
+clang -Wall -Werror -Wextra main.c -o revWstr || exit 100
 ./revWstr "paqe fwtdjetyi ytjn eytjoeyjne jeyj" > real
 ./revWstr "cette phrase ne cache rien" >> real
 ./revWstr "cette phrase! !ne! cac he rien" >> real

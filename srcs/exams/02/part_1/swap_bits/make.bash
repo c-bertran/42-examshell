@@ -1,13 +1,13 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra swap_bits.c main.c -o swap_bits;
+clang -Wall -Werror -Wextra swap_bits.c main.c -o swap_bits || exit 100
 ./swap_bits 0 > real
 ./swap_bits 4 >> real
 ./swap_bits f >> real
 ./swap_bits W >> real
 ./swap_bits "[" >> real
 
-clang -Wall -Werror -Wextra $1/swap_bits/swap_bits.c main.c -o swap_bits2;
+clang -Wall -Werror -Wextra $1/swap_bits/swap_bits.c main.c -o swap_bits2
 ./swap_bits2 0 > fake
 ./swap_bits2 4 >> fake
 ./swap_bits2 f >> fake

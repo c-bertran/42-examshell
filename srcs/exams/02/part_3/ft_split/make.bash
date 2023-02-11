@@ -1,13 +1,13 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra ft_split.c main.c -o ftSplit;
+clang -Wall -Werror -Wextra ft_split.c main.c -o ftSplit || exit 100
 ./ftSplit "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" > real
 ./ftSplit "cette phrase ne cache rien" >> real
 ./ftSplit "               cette phrase ne cache rien" >> real
 ./ftSplit "                       " >> real
 ./ftSplit "cette phrase ne cache rien               " >> real
 
-clang -Wall -Werror -Wextra $1/ft_split/ft_split.c main.c -o ftSplit2;
+clang -Wall -Werror -Wextra $1/ft_split/ft_split.c main.c -o ftSplit2
 ./ftSplit2 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" > fake
 ./ftSplit2 "cette phrase ne cache rien" >> fake
 ./ftSplit2 "               cette phrase ne cache rien" >> fake

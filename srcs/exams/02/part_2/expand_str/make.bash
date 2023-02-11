@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o expandStr;
+clang -Wall -Werror -Wextra main.c -o expandStr || exit 100
 ./expandStr > real
 ./expandStr one two >> real
 ./expandStr 42 >> real
@@ -8,7 +8,7 @@ clang -Wall -Werror -Wextra main.c -o expandStr;
 ./expandStr "            cette phrase ne cache rien              " >> real
 ./expandStr "       paqe fwtdjetyi	ytjn 			ytjoeyjne 		 jeyj	  	 " >> real
 
-clang -Wall -Werror -Wextra $1/expand_str/expand_str.c -o expandStr2;
+clang -Wall -Werror -Wextra $1/expand_str/expand_str.c -o expandStr2
 ./expandStr2 > fake
 ./expandStr2 one two >> fake
 ./expandStr2 42 >> fake

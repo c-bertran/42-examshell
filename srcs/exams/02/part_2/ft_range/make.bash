@@ -1,12 +1,12 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra ft_range.c main.c -o range;
+clang -Wall -Werror -Wextra ft_range.c main.c -o range || exit 100
 ./range 1 2 > real
 ./range 5 12 >> real
 ./range -42 745 >> real
 ./range -7517 54245 >> real
 
-clang -Wall -Werror -Wextra $1/ft_range/ft_range.c main.c -o range2;
+clang -Wall -Werror -Wextra $1/ft_range/ft_range.c main.c -o range2
 ./range2 1 2 > fake
 ./range2 5 12 >> fake
 ./range2 -42 745 >> fake

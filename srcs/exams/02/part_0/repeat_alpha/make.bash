@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o repeat_alpha;
+clang -Wall -Werror -Wextra main.c -o repeat_alpha || exit 100
 ./repeat_alpha > real
 ./repeat_alpha "abc" >> real
 ./repeat_alpha "abc" "abc" >> real
@@ -8,7 +8,7 @@ clang -Wall -Werror -Wextra main.c -o repeat_alpha;
 ./repeat_alpha "fwtdjetyi" >> real
 ./repeat_alpha "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" >> real
 
-clang -Wall -Werror -Wextra $1/repeat_alpha/repeat_alpha.c -o repeat_alpha2;
+clang -Wall -Werror -Wextra $1/repeat_alpha/repeat_alpha.c -o repeat_alpha2
 ./repeat_alpha2 > fake
 ./repeat_alpha2 "abc" >> fake
 ./repeat_alpha2 "abc" "abc" >> fake

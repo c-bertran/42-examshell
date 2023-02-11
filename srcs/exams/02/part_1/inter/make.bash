@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o inter || exit 100;
+clang -Wall -Werror -Wextra main.c -o inter || exit 100
 ./inter zpadinton "paqefwtdjetyiytjneytjoeyjnejeyj" > real
 ./inter ddf6vewg64f gtwthgdwthdwfteewhrtag6h4ffdhsd >> real
 ./inter "rien" "cette phrase ne cache rien" >> real

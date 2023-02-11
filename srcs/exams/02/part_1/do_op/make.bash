@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o doOp;
+clang -Wall -Werror -Wextra main.c -o doOp || exit 100
 ./doOp 42 + 25 > real
 ./doOp 42 * 25 >> real
 ./doOp 42 - 25 >> real
@@ -12,7 +12,7 @@ clang -Wall -Werror -Wextra main.c -o doOp;
 ./doOp 42 + >> real
 ./doOp >> real
 
-clang -Wall -Werror -Wextra $1/do_op/do_op.c -o doOp2;
+clang -Wall -Werror -Wextra $1/do_op/do_op.c -o doOp2
 ./doOp2 42 + 25 > fake
 ./doOp2 42 * 25 >> fake
 ./doOp2 42 - 25 >> fake

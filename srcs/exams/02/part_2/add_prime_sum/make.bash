@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o addPrimeSub;
+clang -Wall -Werror -Wextra main.c -o addPrimeSub || exit 100
 ./addPrimeSub > real
 ./addPrimeSub one two >> real
 ./addPrimeSub -10 >> real
@@ -9,7 +9,7 @@ clang -Wall -Werror -Wextra main.c -o addPrimeSub;
 ./addPrimeSub 78 >> real
 ./addPrimeSub 404 >> real
 
-clang -Wall -Werror -Wextra $1/add_prime_sub/add_prime_sub.c -o addPrimeSub2;
+clang -Wall -Werror -Wextra $1/add_prime_sub/add_prime_sub.c -o addPrimeSub2
 ./addPrimeSub2 > fake
 ./addPrimeSub2 one two >> fake
 ./addPrimeSub2 -10 >> real

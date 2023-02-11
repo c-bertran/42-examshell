@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o maxlenoc
+clang -Wall -Werror -Wextra main.c -o maxlenoc || exit 100
 ./maxlenoc > real
 ./maxlenoc one two three >> real
 ./maxlenoc "   " "        " "    " "                  " "        " >> real

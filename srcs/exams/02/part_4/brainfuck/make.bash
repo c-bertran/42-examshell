@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o brainfuck
+clang -Wall -Werror -Wextra main.c -o brainfuck || exit 100
 ./brainfuck > real
 ./brainfuck one two >> real
 ./brainfuck "+++++[>++++[>++++H>+++++i<<-]>>>++\n<<<<-]>>--------.>+++++.>." >> real

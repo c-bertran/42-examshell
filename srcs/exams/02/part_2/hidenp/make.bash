@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o hidenp;
+clang -Wall -Werror -Wextra main.c -o hidenp || exit 100
 ./hidenp > real
 ./hidenp one >> real
 ./hidenp one two three >> real
@@ -8,7 +8,7 @@ clang -Wall -Werror -Wextra main.c -o hidenp;
 ./hidenp "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" "etyi" >> real
 ./hidenp "               cette phrase ne cache rien" "   ce" >> real
 
-clang -Wall -Werror -Wextra $1/hidenp/hidenp.c -o hidenp2;
+clang -Wall -Werror -Wextra $1/hidenp/hidenp.c -o hidenp2
 ./hidenp2 > fake
 ./hidenp2 one >> fake
 ./hidenp2 one two three >> real

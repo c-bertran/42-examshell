@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra ft_strcspn.c main.c -o ftStrcspn;
+clang -Wall -Werror -Wextra ft_strcspn.c main.c -o ftStrcspn || exit 100
 ./ftStrcspn "hello world" "hello world" > real
 ./ftStrcspn "" "" >> real
 ./ftStrcspn "wonderful" "wondertime" >> real
@@ -8,7 +8,7 @@ clang -Wall -Werror -Wextra ft_strcspn.c main.c -o ftStrcspn;
 ./ftStrcspn "behavior" "declared" >> real
 ./ftStrcspn "  wou    wah   wi" "  wou    wah  X wi" >> real
 
-clang -Wall -Werror -Wextra $1/ft_strcspn/ft_strcspn.c main.c -o ftStrcspn2;
+clang -Wall -Werror -Wextra $1/ft_strcspn/ft_strcspn.c main.c -o ftStrcspn2
 ./ftStrcspn2 "hello world" "hello world" > fake
 ./ftStrcspn2 "" "" >> fake
 ./ftStrcspn2 "wonderful" "wondertime" >> fake

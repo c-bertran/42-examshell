@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra ft_strdup.c main.c -o ftStrdup;
+clang -Wall -Werror -Wextra ft_strdup.c main.c -o ftStrdup || exit 100
 ./ftStrdup "hello world" > real
 ./ftStrdup "" >> real
 ./ftStrdup "wonderful" >> real
@@ -8,7 +8,7 @@ clang -Wall -Werror -Wextra ft_strdup.c main.c -o ftStrdup;
 ./ftStrdup "behavior" >> real
 ./ftStrdup "  wou    wah   wi" >> real
 
-clang -Wall -Werror -Wextra $1/ft_strdup/ft_strdup.c main.c -o ftStrdup2;
+clang -Wall -Werror -Wextra $1/ft_strdup/ft_strdup.c main.c -o ftStrdup2
 ./ftStrdup2 "hello world" > fake
 ./ftStrdup2 "" >> fake
 ./ftStrdup2 "wonderful" >> fake

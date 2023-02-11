@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra ft_atoi_base.c main.c -o atoiBase;
+clang -Wall -Werror -Wextra ft_atoi_base.c main.c -o atoiBase || exit 100
 ./atoiBase > real
 ./atoiBase one two >> real
 ./atoiBase 42 >> real
@@ -11,7 +11,7 @@ clang -Wall -Werror -Wextra ft_atoi_base.c main.c -o atoiBase;
 ./atoiBase "cette phrase ne cache rien              " 6 >> real
 ./atoiBase "       paqe fwtdjetyi	ytjn 			ytjoeyjne 		 jeyj" 13 >> real
 
-clang -Wall -Werror -Wextra $1/ft_atoi_base/ft_atoi_base.c main.c -o atoiBase2;
+clang -Wall -Werror -Wextra $1/ft_atoi_base/ft_atoi_base.c main.c -o atoiBase2
 ./atoiBase2 > fake
 ./atoiBase2 one two >> fake
 ./atoiBase2 42 >> fake

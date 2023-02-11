@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra ft_putstr.c main.c -o ft_putstr;
+clang -Wall -Werror -Wextra ft_putstr.c main.c -o ft_putstr || exit 100
 ./ft_putstr > real
 
 clang -Wall -Werror -Wextra $1/ft_putstr/ft_putstr.c main.c -o ft_putstr2;

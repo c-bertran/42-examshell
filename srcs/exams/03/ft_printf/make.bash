@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Wextra -D REAL main.c -o real_printf || exit 100;
+clang -Wall -Wextra -D REAL main.c -o real_printf || exit 100
 ./real_printf | cat -e > real
 
 clang -Wall -Werror -Wextra $1/ft_printf/ft_printf.c main.c -o ft_printf

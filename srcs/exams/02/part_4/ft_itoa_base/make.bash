@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra ft_itoa_base.c main.c -o itoaBase
+clang -Wall -Werror -Wextra ft_itoa_base.c main.c -o itoaBase || exit 100
 ./itoaBase "hello world" > real
 ./itoaBase "" >> real
 ./itoaBase "    " >> real

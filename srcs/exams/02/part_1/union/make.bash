@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o union || exit 100;
+clang -Wall -Werror -Wextra main.c -o union || exit 100
 ./union zpadinton "paqefwtdjetyiytjneytjoeyjnejeyj" > real
 ./union ddf6vewg64f gtwthgdwthdwfteewhrtag6h4ffdhsd >> real
 ./union "rien" "cette phrase ne cache rien" >> real

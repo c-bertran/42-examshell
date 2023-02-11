@@ -1,12 +1,12 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o strCapitalizer;
+clang -Wall -Werror -Wextra main.c -o strCapitalizer || exit 100
 ./strCapitalizer > real
 ./strCapitalizer one two >> real
 ./strCapitalizer "SecONd teST A LITtle BiT   Moar comPLEX" "   But... This iS not THAT COMPLEX" "     Okay, this is the last 1239809147801 but not    the least    t" >> real
 ./strCapitalizer "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" "               cette phrase ne cache rien" >> real
 
-clang -Wall -Werror -Wextra $1/str_capitalizer/str_capitalizer.c -o strCapitalizer2;
+clang -Wall -Werror -Wextra $1/str_capitalizer/str_capitalizer.c -o strCapitalizer2
 ./strCapitalizer2 > fake
 ./strCapitalizer2 one two >> fake
 ./strCapitalizer2 "SecONd teST A LITtle BiT   Moar comPLEX" "   But... This iS not THAT COMPLEX" "     Okay, this is the last 1239809147801 but not    the least    t" >> fake

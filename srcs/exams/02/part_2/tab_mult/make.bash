@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o tabMult;
+clang -Wall -Werror -Wextra main.c -o tabMult || exit 100
 ./tabMult > real
 ./tabMult one two >> real
 ./tabMult 0 >> real
@@ -11,7 +11,7 @@ clang -Wall -Werror -Wextra main.c -o tabMult;
 ./tabMult 490 >> real
 ./tabMult 2734 >> real
 
-clang -Wall -Werror -Wextra $1/tab_mult/tab_mult.c -o tabMult2;
+clang -Wall -Werror -Wextra $1/tab_mult/tab_mult.c -o tabMult2
 ./tabMult2 > fake
 ./tabMult2 one two >> fake
 ./tabMult2 0 >> fake

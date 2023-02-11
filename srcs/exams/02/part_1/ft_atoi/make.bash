@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra ft_atoi.c main.c -o ftAtoi;
+clang -Wall -Werror -Wextra ft_atoi.c main.c -o ftAtoi || exit 100
 ./ftAtoi "hello world" > real
 ./ftAtoi "" >> real
 ./ftAtoi "    " >> real
@@ -21,7 +21,7 @@ clang -Wall -Werror -Wextra ft_atoi.c main.c -o ftAtoi;
 ./ftAtoi -16 >> real
 ./ftAtoi -8 >> real
 
-clang -Wall -Werror -Wextra $1/ft_atoi/ft_atoi.c main.c -o ftAtoi2;
+clang -Wall -Werror -Wextra $1/ft_atoi/ft_atoi.c main.c -o ftAtoi2
 ./ftAtoi2 "hello world" > real
 ./ftAtoi2 "" >> real
 ./ftAtoi2 "    " >> real

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o search_and_replace;
+clang -Wall -Werror -Wextra main.c -o search_and_replace || exit 100
 ./search_and_replace > real
 ./search_and_replace "abc" >> real
 ./search_and_replace "abc" "abc" >> real

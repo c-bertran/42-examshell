@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra ft_strcpy.c main.c -o ft_strcpy;
+clang -Wall -Werror -Wextra ft_strcpy.c main.c -o ft_strcpy || exit 100
 ./ft_strcpy "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" > real
 ./ft_strcpy "cette phrase ne cache rien" >> real
 ./ft_strcpy "               cette phrase ne cache rien" >> real

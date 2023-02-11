@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o epurStr;
+clang -Wall -Werror -Wextra main.c -o epurStr || exit 100
 ./epurStr > real
 ./epurStr one two >> real
 ./epurStr 42 >> real
@@ -8,7 +8,7 @@ clang -Wall -Werror -Wextra main.c -o epurStr;
 ./epurStr "            cette phrase ne cache rien              " >> real
 ./epurStr "       paqe fwtdjetyi	ytjn 			ytjoeyjne 		 jeyj	  	 " >> real
 
-clang -Wall -Werror -Wextra $1/epur_str/epur_str.c -o epurStr2;
+clang -Wall -Werror -Wextra $1/epur_str/epur_str.c -o epurStr2
 ./epurStr2 > fake
 ./epurStr2 one two >> fake
 ./epurStr2 42 >> fake

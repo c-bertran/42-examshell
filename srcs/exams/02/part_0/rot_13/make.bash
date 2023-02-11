@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o rot_13;
+clang -Wall -Werror -Wextra main.c -o rot_13 || exit 100
 ./rot_13 > real
 ./rot_13 "abc" >> real
 ./rot_13 "abc" "abc" >> real
@@ -8,7 +8,7 @@ clang -Wall -Werror -Wextra main.c -o rot_13;
 ./rot_13 "fwtdjetyi" >> real
 ./rot_13 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" >> real
 
-clang -Wall -Werror -Wextra $1/rot_13/rot_13.c -o rot_132;
+clang -Wall -Werror -Wextra $1/rot_13/rot_13.c -o rot_132
 ./rot_132 > fake
 ./rot_132 "abc" >> fake
 ./rot_132 "abc" "abc" >> fake

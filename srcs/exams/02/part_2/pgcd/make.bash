@@ -1,12 +1,12 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o pgcd;
+clang -Wall -Werror -Wextra main.c -o pgcd || exit 100
 ./pgcd 1 2 > real
 ./pgcd 5 12 >> real
 ./pgcd 42 745 >> real
 ./pgcd 7517 54245 >> real
 
-clang -Wall -Werror -Wextra $1/pgcd/pgcd.c -o pgcd2;
+clang -Wall -Werror -Wextra $1/pgcd/pgcd.c -o pgcd2
 ./pgcd2 1 2 > fake
 ./pgcd2 5 12 >> fake
 ./pgcd2 42 745 >> fake

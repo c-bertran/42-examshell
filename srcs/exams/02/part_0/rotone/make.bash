@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra main.c -o rotone;
+clang -Wall -Werror -Wextra main.c -o rotone || exit 100
 ./rotone > real
 ./rotone "abc" >> real
 ./rotone "abc" "abc" >> real
@@ -8,7 +8,7 @@ clang -Wall -Werror -Wextra main.c -o rotone;
 ./rotone "fwtdjetyi" >> real
 ./rotone "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" >> real
 
-clang -Wall -Werror -Wextra $1/rotone/rotone.c -o rotone2;
+clang -Wall -Werror -Wextra $1/rotone/rotone.c -o rotone2
 ./rotone2 > fake
 ./rotone2 "abc" >> fake
 ./rotone2 "abc" "abc" >> fake

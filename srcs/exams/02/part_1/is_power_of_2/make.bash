@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra is_power_of_2.c main.c -o isPower;
+clang -Wall -Werror -Wextra is_power_of_2.c main.c -o isPower || exit 100
 ./isPower 0 > real
 ./isPower 1 >> real
 ./isPower 2 >> real
@@ -10,7 +10,7 @@ clang -Wall -Werror -Wextra is_power_of_2.c main.c -o isPower;
 ./isPower -2048 >> real
 ./isPower -3 >> real
 
-clang -Wall -Werror -Wextra $1/is_power_of_2/is_power_of_2.c main.c -o isPower2;
+clang -Wall -Werror -Wextra $1/is_power_of_2/is_power_of_2.c main.c -o isPower2
 ./isPower2 0 > fake
 ./isPower2 1 >> fake
 ./isPower2 2 >> fake

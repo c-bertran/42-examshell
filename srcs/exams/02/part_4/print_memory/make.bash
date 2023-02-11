@@ -1,6 +1,6 @@
 #!/bin/bash
 
-clang -Wall -Werror -Wextra print_memory.c main.c -o printMemory
+clang -Wall -Werror -Wextra print_memory.c main.c -o printMemory || exit 100
 ./printMemory 0 > real
 ./printMemory 42 >> real
 ./printMemory 4624 >> real
