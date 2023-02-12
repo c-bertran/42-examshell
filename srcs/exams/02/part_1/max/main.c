@@ -10,6 +10,7 @@ int	main(int argc, char **argv)
 		for (unsigned int i = 2; i < argc; i++)
 			tab[i - 2] = atoi(argv[i]);
 		printf("%d\n", max(tab, atoi(argv[1])));
+		free(tab);
 	}
 	return 0;
 }

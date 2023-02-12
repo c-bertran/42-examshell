@@ -1,4 +1,3 @@
-
 typedef struct	s_point {
 	int						x;
 	int						y;

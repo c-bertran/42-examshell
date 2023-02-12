@@ -1,26 +1,23 @@
 #include <unistd.h>
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
 	int	i = 0;
-	if (argc == 2)
+
+	if (ac == 4)
 	{
-		while (argv[1][i]!= '\0')
-		{
-			if (((argv[2][0] >= 'a' && argv[2][0]<= 'z') || (argv[2][0] >= 'A' && argv[2][0]<= 'Z')) && argv[2][1] == '\0')
+		if(((av[2][0] >= 'a' && av[2][0]<= 'z') || (av[2][0] >= 'A' && av[2][0]<= 'Z')) && av[2][1] == '\0')
+			if (((av[3][0] >= 'a' && av[2][0]<= 'z') || (av[3][0] >= 'A' && av[3][0]<= 'Z')) && av[3][1] == '\0')
 			{
-				if (((argv[3][0] >= 'a' && argv[2][0]<= 'z') || (argv[3][0] >= 'A' && argv[3][0]<= 'Z')) && argv[3][1] == '\0')
+				while (av[1][i] != '\0')
 				{
-					while (argv[1][i] != '\0')
-					{
-						if (argv[1][i] == argv[2][0])
-								argv[1][i] = argv[3][0];
-						write(1, &argv[1][i], 1);
-						i++;
-					}
+					if (av[1][i] == av[2][0])
+						av[1][i] = av[3][0];
+					write(1, &av[1][i], 1);
+					i++;
 				}
 			}
-		}
 	}
+	write(1, "\n", 1);
 	return 0;
 }

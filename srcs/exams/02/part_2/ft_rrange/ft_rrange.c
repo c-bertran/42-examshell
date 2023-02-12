@@ -1,4 +1,3 @@
-// Passed Moulinette 2019.09.01
 #include <stdlib.h>
 
 int		absolute_value(int n) {

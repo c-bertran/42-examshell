@@ -120,7 +120,6 @@ int		check(char **argv) {
 #pragma endregion Check
 
 int		main(int argc, char **argv) {
-	
 	if (argc > 1 && argc == (ft_strlen(argv[1]) + 1)) {
 		int x = 1;
 
