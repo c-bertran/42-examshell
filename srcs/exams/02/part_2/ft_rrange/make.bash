@@ -13,6 +13,6 @@ clang -Wall -Werror -Wextra $1/ft_rrange/ft_rrange.c main.c -o rrange2
 ./rrange2 -7517 54245 >> fake
 
 diff -y --suppress-common-lines real fake > __diff
-bash leaks.bash range2 0 5 12 > /dev/null 2>&1
+bash leaks.bash rrange2 0 5 12 > /dev/null 2>&1
 
 rm -rf rrange rrange2 real fake

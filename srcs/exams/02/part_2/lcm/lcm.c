@@ -14,4 +14,5 @@ unsigned int	lcm(unsigned int a, unsigned int b)
 			return (n);
 		++n;
 	}
+	return 0;
 }

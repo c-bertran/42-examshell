@@ -6,7 +6,7 @@ clang -Wall -Werror -Wextra ft_strcpy.c main.c -o ft_strcpy || exit 100
 ./ft_strcpy "               cette phrase ne cache rien" >> real
 ./ft_strcpy "                       " >> real
 
-clang -Wall -Werror -Wextra $1/ft_strcpy/ft_strcpy.c main.c -o ft_strcpy2;
+clang -Wall -Werror -Wextra $1/ft_strcpy/ft_strcpy.c main.c -o ft_strcpy2
 ./ft_strcpy2 "paqe fwtdjetyi   ytjn    eytjoeyjne  jeyj" > fake
 ./ft_strcpy2 "cette phrase ne cache rien" >> fake
 ./ft_strcpy2 "               cette phrase ne cache rien" >> fake
