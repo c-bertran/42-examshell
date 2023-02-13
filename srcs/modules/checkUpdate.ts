@@ -41,13 +41,23 @@ export default async (): Promise<void> => {
 				res.on('data', (chunk: unknown) => data += chunk);
 				res.on('end', () => {
 					const blob = JSON.parse(data);
-	
 					spin.stop();
 					stdout.clearLine(0);
 					stdout.write(format.erase.erase);
 					if (isUpdate(blob.tag_name)) {
-						console.log(`${format.foreground.light.blue}The ${format.foreground.light.red}${blob.tag_name}${format.foreground.light.blue} version is available for download`);
-						console.log(`${format.format.reset}⇒ ${format.foreground.light.green}https://github.com/c-bertran/examshell/releases/latest ${format.format.reset}⇐`);
+						const str = `═════════════════ ${format.foreground.light.red}${blob.tag_name}${format.format.reset} ═════════════════`;
+						const str2 = () => {
+							let ret = '';
+							const len = str.length - format.foreground.light.red.length - format.format.reset.length;
+							for (let i = 0; i < len; i++)
+								ret += '═';
+							return ret;
+						};
+						console.log(str);
+						console.log(`${format.foreground.normal.cyan}A new version is available for download${format.format.reset}`);
+						console.log(blob.body);
+						console.log(`${format.format.reset}» ${format.foreground.light.green}https://github.com/c-bertran/examshell/releases/latest${format.format.reset} «`);
+						console.log(str2());
 					}
 					resolve();
 				});
