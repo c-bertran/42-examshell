@@ -20,9 +20,9 @@ const list: Record<number, string> = {
 	40: 'Checker failed'
 };
 
-export let __lastErrorCode__: number;
+export let lastErrorCode: number;
 export default (code: number, options?: { exit?: boolean, data?: string }): void => {
-	__lastErrorCode__ = code;
+	lastErrorCode = code;
 	console.error(`[Error ${code}] ${list[code] ?? undefined} ${options?.data}`);
 	if (options?.exit)
 		exit(code);

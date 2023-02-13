@@ -33,7 +33,7 @@ export default class {
 		this.options = {
 			infinite: getConfig().options.infinite,
 			doom: getConfig().options.doom,
-			lang: getConfig().options.lang
+			lang: 'en_US'
 		};
 		this.examInstance = undefined;
 		this.clockInstance = undefined;

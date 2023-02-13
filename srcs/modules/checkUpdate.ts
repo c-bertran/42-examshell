@@ -22,6 +22,9 @@ const isUpdate = (ver: string): boolean => {
 	return false;
 };
 
+/**
+ * Check if new version is available
+ */
 export default async (): Promise<void> => {
 	const spin = new spinner();
 

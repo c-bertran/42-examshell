@@ -52,6 +52,9 @@ const install = async (resolve: (value: unknown) => void) => {
 		});
 };
 
+/**
+ * Check if mandatory lib is installed
+ */
 export default (): Promise<unknown> => {
 	if (platform() !== 'linux' && platform() !== 'darwin')
 		error(1);

@@ -14,10 +14,9 @@
  */
 
 import 'modules/fspatch';
-import { mkdir } from 'fs/promises';
-import { dirname, resolve } from 'path';
-import { argv, execPath, exit } from 'process';
-import { __lastErrorCode__ } from 'modules/error';
+import { argv, exit } from 'process';
+import args from 'modules/args';
+import { lastErrorCode } from 'modules/error';
 import main from 'modules/main';
 import checklib from 'modules/checklib';
 import checkUpdate from 'modules/checkUpdate';
@@ -27,14 +26,14 @@ import uncaughtException from 'modules/uncaughtException';
 (async () => {
 	let instance: main;
 	try {
-		if (argv[2] === '--custom' || argv[2] === '-C') // create dir for custom exam
-			await mkdir(resolve(dirname(execPath), 'exams'), { recursive: true }); 
+		args(argv);
 		customExamList();
 		getConfig();
 		if (getConfig().checkUpdate)
 			await checkUpdate();
 		if (getConfig().checkLib)
 			await checklib();
+
 		instance = new main();
 		await instance.setLang();
 		await instance.setOptionsAndExam();
@@ -42,7 +41,7 @@ import uncaughtException from 'modules/uncaughtException';
 		instance.manageClock();
 		instance.startPrompt();
 	} catch {
-		exit(__lastErrorCode__);
+		exit(lastErrorCode);
 	}
 })();
 

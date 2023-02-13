@@ -13,7 +13,7 @@ interface config {
 	options: {
 		doom: boolean,
 		infinite: boolean,
-		lang: lang
+		lang: lang | undefined
 	}
 }
 
@@ -43,6 +43,9 @@ const checkObj = (obj: any): string[] => {
 	return errors;
 };
 
+/**
+ * Read config.json and return this
+ */
 export const getConfig = (): config => {
 	const is = (s: string, o: any) => Object.prototype.hasOwnProperty.call(o, s);
 	if (!__config__) {
@@ -60,7 +63,7 @@ export const getConfig = (): config => {
 			options: {
 				doom: false,
 				infinite: false,
-				lang: 'en_US'
+				lang: undefined
 			}
 		};
 		if (Object.keys(file).length) {
@@ -90,6 +93,9 @@ export const getConfig = (): config => {
 	return __config__ as config;
 };
 
+/**
+ * Import custom exam
+ */
 export default (): examDefinition[] => {
 	if (!__exams__.length && existsSync(resolve(__dirname, 'exams'))) {
 		const dirs = readdirSync(resolve(__dirname, 'exams'), { encoding: 'utf-8', withFileTypes: true });

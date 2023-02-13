@@ -12,6 +12,7 @@
 - [Exams](#exams)
 - [Setup](#setup)
 - [How to use](#how-to-use)
+	- [Arguments](#arguments)
 - [Config examshell](#config-examshell)
 - [Create or install custom exam](#create-or-install-custom-exam)
 	- [Install a custom exam](#install-a-custom-exam)
@@ -36,10 +37,10 @@ Some options have been added:
 The following exams are available natively:
 - Exam 02
 - Exam 03
-- Old exam 03
 - Exam 04
 - Exam 05
 - Exam 06
+- Old exam 03
 
 ## Setup
 Download the ![latest version](https://github.com/c-bertran/examshell/releases/latest) of the software. This one is available for MacOS and Linux
@@ -55,10 +56,12 @@ If a rights problem occurs during the execution, make the following command:
 chmod +x examshell
 ```
 
-If you want to create the folder that can contain exams created by other people, run examshell like this:
-```sh
-./examshell -C or --custom
-```
+### Arguments
+
+| args | definition |
+| --- | --- |
+| -C or --custom | Create the folder that can contain the reviews created by other people, and also the configuration file |
+
 
 ## Config examshell
 You can configure the behavior of examshell via the config.json file in the exams folder.
@@ -68,7 +71,7 @@ It has the following options:
 	"checkUpdate": true,
 	"checkLib": true,
 	"signature": true,
-	"exam": "exam_03",
+	"exam": "exam_02",
 	"options": {
 		"doom": false,
 		"infinite": false,
@@ -80,10 +83,10 @@ It has the following options:
 - checkUpdate `boolean` : Checks if a new version is available
 - checkLib `boolean` : Checks if the necessary libraries are installed
 - signature `boolean` : Print the application's logo and signature
-- exam `string` : Id of the exam
+- exam `string` : Id of the exam 
 - options.doom `boolean` : All work and git is reset if grademe failed
 - options.infinite `boolean` : There is no time limit anymore
-- options.lang `string` : Selected lang
+- options.lang `string` : Selected lang ('en_US', 'fr_FR')
 
 ## Create or install custom exam
 Starting with version `0.3.0` examshell allows you to create your own exams in a simple and concise way.
