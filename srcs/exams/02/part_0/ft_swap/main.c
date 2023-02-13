@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	b = &n2;
 	printf("%u-%u|", *a, *b);
 	ft_swap(a, b);
-	printf("%u-%u", *a, *b);
+	printf("%u-%u\n", *a, *b);
 	
 	return 0;
 }

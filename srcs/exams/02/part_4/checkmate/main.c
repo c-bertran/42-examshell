@@ -11,7 +11,7 @@ int		ft_strlen(char *s) {
 }
 
 void	ft_putstr(char *s) {
-	write(STDIN_FILENO, s, ft_strlen(s));
+	write(1, s, ft_strlen(s));
 }
 #pragma endregion Misc
 

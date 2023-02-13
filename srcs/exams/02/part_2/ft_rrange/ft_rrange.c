@@ -1,32 +1,18 @@
 #include <stdlib.h>
 
-int		absolute_value(int n) {
-	if (n < 0)
-		return (-n);
-	return (n);
-}
-
 int		*ft_rrange(int start, int end)
 {
-	int number_of_ints;
-	int *array;
-	int step;
-	int i;
-
-	number_of_ints = 1 + absolute_value(end - start);
-	array = malloc(sizeof(int) * number_of_ints);
+	int		*range, i = 0;
 
 	if (start > end)
-		step = 1;
+		range = (int *)malloc(sizeof(int) * ((start - end) + 1));
 	else
-		step = -1;
-
-	i = 0;
-	while (i < number_of_ints)
+		range = (int *)malloc(sizeof(int) * ((end - start) + 1));
+	while (start != end)
 	{
-		array[i] = end;
-		end = end + step;
-		++i;
+		range[i++] = end;
+		end -= (start > end) ? -1 : 1;
 	}
-	return (array);
+	range[i] = end;
+	return (range);
 }

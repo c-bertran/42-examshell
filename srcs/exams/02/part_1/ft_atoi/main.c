@@ -6,6 +6,6 @@ int main(int argc, char **argv)
 {
 	(void)argc;
 
-	printf("%n\n", ft_atoi(argv[1]));
+	printf("%d\n", ft_atoi(argv[1]));
 	return 0;
 }

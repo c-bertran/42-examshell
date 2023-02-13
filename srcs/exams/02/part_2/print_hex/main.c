@@ -15,7 +15,7 @@ int		ft_atoi(char *str)
 
 void	print_hex(int n)
 {
-	char hex_digits[] = "0123456789abcdef";
+	char *hex_digits = "0123456789abcdef";
 
 	if (n >= 16)
 		print_hex(n / 16);

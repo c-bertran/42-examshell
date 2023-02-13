@@ -8,7 +8,7 @@ int main(int argc, char **argv)
 	(void)argc;
 	char *str = malloc(sizeof(char) * 100);
 
-	printf("%s", ft_strcpy(str, argv[1]));
+	printf("%s\n", ft_strcpy(str, argv[1]));
 	free(str);
 	return 0;
 }

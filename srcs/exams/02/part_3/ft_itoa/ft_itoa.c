@@ -51,7 +51,7 @@ char	*ft_strdup(const char *s1)
 	return (dest);
 }
 
-char	*ft_itoa(int nbr)
+char	*ft_itoa(int n)
 {
 	char	buff[12];
 	int		i = 10;

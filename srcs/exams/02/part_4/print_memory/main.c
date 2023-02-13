@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 void	print_memory(const void *addr, size_t size);
 
@@ -20,7 +21,7 @@ int main(int argc, char **argv) {
 
 	print_memory(tab, sizeof(tab));
 
-	write(1, '\n', 1);
+	write(1, "\n", 1);
 	
 	return 0;
 }

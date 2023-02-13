@@ -1,25 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void	pgcd(int a, int b)
+int main(int argc, char const *argv[])
 {
-	int n = a;
-
-	while (n > 0)
-	{
-		if (a % n == 0 && b % n == 0)
-		{
-			printf("%d", n);
-			return;
+	if (argc == 3) {
+		int x = atoi(argv[1]), y = atoi(argv[2]);
+		if ((x > 0 && y > 0)) {
+			while (x != y) {
+				if (x > y)
+					x -= y;
+				else
+					y -= x;
+			}
 		}
-		--n;
+		printf("%d", x);
 	}
-}
-
-int		main(int argc, char **argv)
-{
-	if (argc == 3)
-		pgcd(atoi(argv[1]), atoi(argv[2]));
 	printf("\n");
-	return (0);
+	return 0;
 }

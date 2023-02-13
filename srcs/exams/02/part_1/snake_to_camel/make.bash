@@ -3,7 +3,7 @@
 clang -Wall -Werror -Wextra main.c -o snakeToCamel || exit 100
 ./snakeToCamel "hello_world_and_plip" > real
 ./snakeToCamel "helloWorldAndCoucou" >> real
-./snakeToCamel "Wonder_ful_orld" >> real
+./snakeToCamel "wonder_ful_orld" >> real
 ./snakeToCamel "" >> real
 ./snakeToCamel one two >> real
 ./snakeToCamel >> real
@@ -11,7 +11,7 @@ clang -Wall -Werror -Wextra main.c -o snakeToCamel || exit 100
 clang -Wall -Werror -Wextra $1/snake_to_camel/snake_to_camel.c -o snakeToCamel2
 ./snakeToCamel2 "hello_world_and_plip" > fake
 ./snakeToCamel2 "helloWorldAndCoucou" >> fake
-./snakeToCamel2 "Wonder_ful_orld" >> fake
+./snakeToCamel2 "wonder_ful_orld" >> fake
 ./snakeToCamel2 "" >> fake
 ./snakeToCamel2 one two >> fake
 ./snakeToCamel2 >> fake

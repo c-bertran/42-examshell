@@ -7,7 +7,7 @@ int		main(int argc, char **argv) {
 	if (argc > 3) {
 		char *s = ft_itoa_base(atoi(argv[1]), atoi(argv[2]));
 		printf(
-			"Number:%d|Base:%d|Result:%s\n",
+			"Number:%s|Base:%s|Result:%s\n",
 			argv[1],
 			argv[2],
 			s
